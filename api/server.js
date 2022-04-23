@@ -13,8 +13,6 @@ server.use('/users', usersRoutes)
 server.use('/plants', plantsRoutes)
 server.use('/trackers', trackersRoutes)
 
-const port = process.env.PORT || 3000;
-
 server.get('/', (req, res) => res.send('Welcome to the Hood Mothafucker'))
 
 module.exports = server
