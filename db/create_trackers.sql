@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS Tracker;
+DROP TABLE IF EXISTS Trackers;
 
-CREATE TABLE Tracker (
+CREATE TABLE Trackers (
     id serial PRIMARY KEY,
-    habit varchar(50) NOT NULL,
+    habits varchar(50) NOT NULL,
     count INT NOT NULL,
     habit_date DATE,
     FOREIGN KEY(userId) REFERENCES User(id)
