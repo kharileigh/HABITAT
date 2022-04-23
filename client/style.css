@@ -2,7 +2,8 @@
 
 /* ------- NAV BAR ------- */
 nav {
-    background-color: rgb(0, 0, 0, 0.35);
+    background-color: rgb(0, 0, 0, 0.33);
+    border-radius: 4%;
     display: flex;
     padding: 25px 25px;
     position: sticky;
@@ -25,8 +26,8 @@ nav {
 
 /* -------- MAIN CONTENT ------ */
 body {
-    /* background: rgb(43,82,44); */
-    background: linear-gradient(180deg, rgba(43,82,44,1) 0%, rgba(20,170,19,1) 53%);
+    background: rgb(43,82,44);
+    background: linear-gradient(180deg, rgba(43,82,44,1) 9%, rgba(20,170,19,1) 96%);
 }
 
 .content {
@@ -41,7 +42,7 @@ body {
     position: relative;
     border-radius: 5%;
     z-index: 1;
-    height: 80%;
+    height: 35%;
     width: 100%;
     object-fit: cover;
 }
