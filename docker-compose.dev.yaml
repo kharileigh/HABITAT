@@ -1,0 +1,29 @@
+services:
+  api:
+    container_name: debug_dev_api
+    ports: 
+      - 3000:3000
+    environment: 
+      - PGUSER=futureproof
+      - PGHOST=db
+      - PGPASSWORD=librarypass
+      - PGDATABASE=library
+      - PGPORT=5432
+      - NODE_ENV=development
+    depends_on:
+      - db
+    command: bash -c "npm install && npm run seedDev && npm run dev"
+
+  db:
+    container_name: debug_dev_db
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    environment: 
+      - POSTGRES_DB=library
+      - POSTGRES_USER=futureproof
+      - POSTGRES_PASSWORD=librarypass
+volumes:
+  dbdata:
+networks: 
+  default:
+    name: debug_api
