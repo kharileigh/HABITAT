@@ -8,13 +8,19 @@ nav {
     position: sticky;
 }
 
-.logo {
+.logo-container {
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     position: sticky;
-    width: 20px;
+    width: 75vw;
+    height: 28vh;
     z-index: 100;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 /* -------- MAIN CONTENT ------ */
@@ -30,7 +36,8 @@ body {
 }
 
 .jumbotron video {
-    padding-top: 15%;
+    padding-top: 5%;
+    padding-bottom: 5%;
     position: relative;
     border-radius: 5%;
     z-index: 1;
@@ -40,7 +47,7 @@ body {
 }
 
 /* --LOGIN-- */
-.login {
+.login-container {
     background-color: rgb(0, 0, 0, 0.3);
     border-radius: 5%;
     padding: 15px;
