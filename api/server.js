@@ -5,14 +5,16 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-const booksRoutes = require('./routes/books')
-const authorsRoutes = require('./routes/authors')
+const usersRoutes = require('./routes/users')
+const plantsRoutes = require('./routes/plants')
+const trackersRoutes = require('./routes/trackers')
 
-server.use('/books', booksRoutes)
-server.use('/authors', authorsRoutes)
+server.use('/users', usersRoutes)
+server.use('/plants', plantsRoutes)
+server.use('/trackers', trackersRoutes)
 
 const port = process.env.PORT || 3000;
 
-server.get('/', (req, res) => res.send('Welcome to the Plants'))
+server.get('/', (req, res) => res.send('Welcome to the Hood Mothafucker'))
 
 module.exports = server

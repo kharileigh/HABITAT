@@ -1,11 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const booksController = require('../controllers/plants')
+const plantsController = require('../controllers/plants')
 
-router.get('/', booksController.index)
-router.get('/:id', booksController.show)
-router.post('/', booksController.create)
-router.delete('/:id', booksController.destroy)
-router.put('/:id', booksController.update)
+// same structure we saw but I organised it and ADDED update option
+router.route('/')
+    .get(plantsController.index)
+    .post(plantsController.create)
+
+
+router.route('/:id') 
+    .get(plantsController.show)
+    .delete(plantsController.destroy)
+    .put(plantsController.update)
+
 
 module.exports = router;
