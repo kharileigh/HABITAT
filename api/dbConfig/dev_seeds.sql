@@ -3,9 +3,9 @@ VALUES
 ('American Marigold'),
 ('Annual Vinca'),
 ('Bacopa'),
-()
+('Plant');
 
-INSERT INTO User (username, pass)
+INSERT INTO User (username, password)
 VALUES
 (
     'Onur',
@@ -23,5 +23,3 @@ VALUES
     'Robyn',
     'ILoveConstruction123'
 );
-
-INSERT INTO Tracker ()

@@ -5,14 +5,14 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-const usersRoutes = require('./routes/users')
-const plantsRoutes = require('./routes/plants')
-const trackersRoutes = require('./routes/trackers')
+const usersRoutes = require('./routes/users');
+const plantsRoutes = require('./routes/plants');
+const trackersRoutes = require('./routes/trackers');
 
-server.use('/users', usersRoutes)
-server.use('/plants', plantsRoutes)
-server.use('/trackers', trackersRoutes)
+server.use('/users', usersRoutes);
+server.use('/plants', plantsRoutes);
+server.use('/trackers', trackersRoutes);
 
-server.get('/', (req, res) => res.send('Welcome to the Hood Mothafucker'))
+server.get('/', (req, res) => res.send('Welcome to the Hood Mothafucker'));
 
-module.exports = server
+module.exports = server;

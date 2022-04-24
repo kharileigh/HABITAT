@@ -23,14 +23,14 @@ module.exports = class Plant {
     static findById(id){
         return new Promise (async (resolve, reject) => {
             try {
-                let plantData = await db.query(`SELECT Plants.*, Users.username, Trackers.habits
-                                                    FROM books         
+                let plantData = await db.query(`SELECT Plants.*, Trackers.habits
+                                                    FROM Plants         
                                                     JOIN Trackers ON Plants.id = Trackers.plantId
                                                     WHERE Plants.id = $1;`, [ id ]);
                 let plant = new Plant(plantData.rows[0]);
                 resolve (plant);
             } catch (err) {
-                reject('Book not found');
+                reject('Plant not found');
                 console.log(err);
             }
         });
