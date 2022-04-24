@@ -9,13 +9,12 @@ module.exports = class Plant {
     static get all(){
         return new Promise (async (resolve, reject) => {
             try {
-                console.log("is this working")
-                let plantData = await db.query('SELECT * FROM Plants');
+                let plantData = await db.query('SELECT * FROM plants;');
                 let plants = plantData.rows.map(p => new Plant(p));
+                console.log(plants)
                 resolve (plants);
             } catch (err) {
                 reject('Plants not found');
-                console.log(err);
             }
         });
     };
@@ -23,10 +22,10 @@ module.exports = class Plant {
     static findById(id){
         return new Promise (async (resolve, reject) => {
             try {
-                let plantData = await db.query(`SELECT Plants.*, Trackers.habits
-                                                    FROM Plants         
-                                                    JOIN Trackers ON Plants.id = Trackers.plantId
-                                                    WHERE Plants.id = $1;`, [ id ]);
+                let plantData = await db.query(`SELECT plants.*, trackers.habits
+                                                    FROM plants         
+                                                    JOIN trackers ON plants.id = trackers.plantId
+                                                    WHERE plants.id = $1;`, [ id ]);
                 let plant = new Plant(plantData.rows[0]);
                 resolve (plant);
             } catch (err) {

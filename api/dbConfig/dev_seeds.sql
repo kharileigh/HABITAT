@@ -1,4 +1,4 @@
-INSERT INTO Plant (plant_name)
+INSERT INTO plants (plant_name)
 VALUES
 ('Snake Plant'),
 ('Pothos'),
@@ -6,11 +6,11 @@ VALUES
 ('Philodendron Green'),
 ('Peace Lily'),
 ('Spider Plant'),
-('Mini Cactus')
-('Pilea Peperomiodes')
+('Mini Cactus'),
+('Pilea Peperomiodes'),
 ('Monstera Deliciosa');
 
-INSERT INTO User (username, password)
+INSERT INTO users (username, password)
 VALUES
 (
     'Onur',
