@@ -1,9 +1,14 @@
 INSERT INTO Plant (plant_name)
 VALUES
-('American Marigold'),
-('Annual Vinca'),
-('Bacopa'),
-('Plant');
+('Snake Plant'),
+('Pothos'),
+('Aloe Vera'),
+('Philodendron Green'),
+('Peace Lily'),
+('Spider Plant'),
+('Mini Cactus')
+('Pilea Peperomiodes')
+('Monstera Deliciosa');
 
 INSERT INTO User (username, password)
 VALUES

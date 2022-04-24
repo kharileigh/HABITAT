@@ -7,11 +7,11 @@ const password = document.getElementById("password");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const username = event.target.username.value;
-    const password = event.tager.password.value;
+    const password = event.target.password.value;
 
     userLogin(username, password);
-    form.requestFullscreen();
-    redirectHome()
+    form.reset();
+    redirectHome();
     window.location.href = "plants.html";
 });
 
@@ -20,7 +20,7 @@ async function userLogin(username, password) {
     try{
         const userLoginElements = {
             username: username,
-            password: password,
+            password: password
         }
         const options = {
             method: "POST",
@@ -42,5 +42,3 @@ async function userLogin(username, password) {
 function redirectHome() {
     window.location.href = "plants.html";
 }
-
-// ------- SELECT PLANTS FUNCTIONALITY | plants.html ---------//
