@@ -3,27 +3,27 @@ const Plant = require('../models/plants');
 async function index (req, res) {
     try {
         const plants = await Plant.all;
-        res.status(200).json(plants)
+        res.status(200).json(plants);
     } catch (err) {
-        res.status(500).json({err})
+        res.status(500).json({err});
     }
 };
 
 async function show (req, res) {
     try {
-        const plant = await Plant.findById(req.params.id);
-        res.status(200).json(plant)
+        const showPlant = await Plant.findById(req.params.id);
+        res.status(200).json(showPlant);
     } catch (err) {
-        res.status(404).json({err})
+        res.status(404).json({err});
     }
 };
 
 async function create (req, res) {
     try {
-        const plant = await Plant.create(req.body);
-        res.status(201).json(plant)
+        const createPlant = await Plant.create(req.body);
+        res.status(201).json(createPlant);
     } catch (err) {
-        res.status(422).json({err})
+        res.status(422).json({err});
     }
 };
 
@@ -38,8 +38,8 @@ async function update (req, res) {
 
 async function destroy (req, res) {
     try {
-        const plant = await Plant.findById(req.params.id);
-        const resp = await plant.destroy();
+        const destroyedPlant = await Plant.findById(req.params.id);
+        const resp = await destroyedPlant.destroy();
         res.status(204).end();
     } catch (err) {
         res.status(404).json({err});

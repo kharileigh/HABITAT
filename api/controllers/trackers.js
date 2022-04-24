@@ -23,7 +23,7 @@ async function create (req, res) {
         const createTracker = await Tracker.create(req.body);
         res.status(201).json(createTracker);
     } catch (err) {
-        res.status(422).json({err})
+        res.status(422).json({err});
     }
 };
 
