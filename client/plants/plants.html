@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HABITAT</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script defer src="script.js"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@
     <nav>
 
         <div class="logo-container">
-            <img class="logo" src="images/hatitat.png">
+            <img class="logo" src="../images/hatitat.png">
         </div>
 
     </nav>
@@ -27,15 +27,15 @@
             <div class="column">
                 
                 <div class="plant-container">
-                    <img src="images/minicactus.jpg">
+                    <img src="../images/minicactus.jpg">
                     <div class="plant-name">Mini Cactus</div>
                 </div>
                 <div class="plant-container">
-                    <img src="images/peacelily.jpg" style="height:22%">
+                    <img src="../images/peacelily.jpg" style="height:22%">
                     <div class="plant-name">Peace Lily</div>
                 </div>
                 <div class="plant-container">
-                    <img src ="images/aloevera.jpg">
+                    <img src ="../images/aloevera.jpg">
                     <div class="plant-name">Aloe Vera</div>
                 </div>
 
@@ -45,15 +45,15 @@
             <div class="column">
 
                 <div class="plant-container">
-                    <img src="images/pothos.jpg">
+                    <img src="../images/pothos.jpg">
                     <div class="plant-name">Pothos</div>
                 </div>
                 <div class="plant-container">
-                    <img src="images/philodendron.jpg">
+                    <img src="../images/philodendron.jpg">
                     <div class="plant-name">Philodendron Green</div>
                 </div>
                 <div class="plant-container">
-                    <img src="images/pilea.jpg">
+                    <img src="../images/pilea.jpg">
                     <div class="plant-name">Pilea Peperomiodes</div>
                 </div>
                 
@@ -63,15 +63,15 @@
             <div class="column">
 
                 <div class="plant-container">
-                    <img src="images/monstera.jpg">
+                    <img src="../images/monstera.jpg">
                     <div class="plant-name">Monstera Deliciosa</div>
                 </div>
                 <div class="plant-container">
-                    <img src="images/spiderplant.jpg" style="height:17%">
+                    <img src="../images/spiderplant.jpg" style="height:17%">
                     <div class="plant-name">Spider Plant</div>
                 </div>
                 <div class="plant-container">
-                    <img src="images/snakeplant.jpg">
+                    <img src="../images/snakeplant.jpg">
                     <div class="plant-name">Snake Plant</div>
                 </div>
                 
@@ -80,19 +80,17 @@
         </div> 
 
         <!------ ADD YOUR PLANT ------>
-        <div class="new-plant-container">
+        <!-- NEEDS HOVER FORM FOR USER TO ENTER DATA! -->
+        
+        <div class="row">
+            <div class="new-column">
 
-            <div class="plantForm">
-                <form id="newPlantForm" class="new-plant-container" action="api/server.js">
-                    <h3 style="color:white">Add New Plant</h3>
-
-                    <label for="plantName">Plant Name</label>
-                    <input type="text" id="plantname" class="input" placeholder="Enter your plant name" name="plantname" required>
-
-                    <input style="margin-top: 10px" class="plantBtn" type="submit" value="Add">
-                </form>
-
-            </div>
+                <div class="new-plant-container">
+    
+                    <div class="new-plant-name">Add New Plant</div>
+                        <input style="margin-top: 50px" type="button" class="plantBtn">
+                </div>
+            </div>     
         </div>
 
     </div>

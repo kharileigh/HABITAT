@@ -24,10 +24,11 @@ nav {
     max-height: 100%;
 }
 
+
 /* -------- MAIN CONTENT | index.html ------ */
 body {
-    background: rgb(43,82,44);
-    background: linear-gradient(180deg, rgba(43,82,44,1) 9%, rgba(20,170,19,1) 96%);
+    background: rgb(20,170,19);
+    background: linear-gradient(180deg, rgba(20,170,19,1) 15%, rgba(43,82,44,1) 48%);
 }
 
 .content {
@@ -42,7 +43,7 @@ body {
     position: relative;
     border-radius: 5%;
     z-index: 1;
-    height: 35%;
+    height: 25%;
     width: 100%;
     object-fit: cover;
 }
@@ -66,12 +67,6 @@ body {
     padding-left: 15%;
 }
 
-.input {
-    background-color: rgb(0, 0, 0, 0.6);
-    color: white;
-    size: 3;
-
-}
 
 .loginBtn {
     position: relative;
@@ -138,35 +133,42 @@ body {
 
   /* ------- NEW PLANT FORM | plants.html -------- */
 
-  .new-plant-container {
-    background-color: rgb(0, 0, 0, 0.3);
-    border-radius: 5%;
-    padding: 15px;
+.new-column {
+    background-color: white;
+    border-radius: 35%;
+    margin-top: 8px;
+    padding: 25px;
+    vertical-align: middle;
+    width: 100%;
+    height: 20vh;
+
 }
 
-.plantForm {
-    background-color: rgb(255, 255, 255, 0.3);
-    border-radius: 10%;
+.new-plant-container {
+    position: relative;
+ 
+    text-align: center;
     font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 800;
     font-size: 40px;
-    left: 50px;
-    width: 80%;
-    height: 100%;
-    padding: 5% 5%;
-    margin: auto;
-}
+    color: black;
+  }
+
+  .new-plant-name {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+  }
+
 
 .plantBtn {
     position: relative;
     left: 5px;
-    width: 100%;
-    height: 30px;
+    bottom: 25%;
+    width: 60%;
+    height: 25%;
     cursor: pointer;
     background-color: rgb(0, 0, 0, 0.6);
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    border-radius: 7px;
-    font-weight: 600;
-    text-align: center;
-    border: none;
+    border-radius: 25%;
+    padding-top: 5%;
   }
