@@ -37,7 +37,7 @@ module.exports = class User {
     static async create(user){
         return new Promise (async (resolve, reject) => {
             try {
-                const { username, password } = userData;
+                const { username, password } = user;
                 let createdUser = await db.query(`INSERT INTO Users (username, password) VALUES ($1, $2) RETURNING *;`, [ username, password ]);
                 let newUser = new User(createdUser.rows[0]);
                 resolve  (newUser);
