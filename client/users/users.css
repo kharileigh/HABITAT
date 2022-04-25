@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;500&display=swap');
 
+.background {
+    background: linear-gradient(180deg, #14AA13 0%, rgba(13, 192, 12, 0.831771) 45.53%, rgba(13, 193, 12, 0.826935) 45.54%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+
 .plant {
     position: absolute;
     width: 444px;
@@ -18,4 +23,34 @@
     border-radius: 20px; 
 
     font-family: 'Montserrat Alternates', sans-serif;
+}
+.header {
+    position: absolute;
+    width: 75%;
+    height: 40%;
+    margin-left: 53px;
+    margin-top: 38px;
+
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 19.5px;
+    line-height: 55px;
+    letter-spacing: -0.32px;
+
+    color: #FFFFFF;
+}
+.form-pos {
+    padding-top: 20%;
+    padding-bottom: 20%;
+
+    margin-top: 15%;
+    margin-left: 5%;
+
+    position: absolute;
+    border-radius: 5%;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
