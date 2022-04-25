@@ -12,7 +12,7 @@ module.exports = class Tracker {
         return new Promise (async (resolve, reject) => {
             try {
                 console.log("is this working")
-                let trackerData = await db.query('SELECT * FROM Trackers');
+                let trackerData = await db.query('SELECT * FROM trackers');
                 let trackers = trackerData.rows.map(t => new Tracker(t));
                 resolve (trackers);
             } catch (err) {
