@@ -1,90 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;500&display=swap');
 
-/* ------- NAV BAR ------- */
-nav {
-    background-color: rgb(0, 0, 0, 0.33);
-    border-radius: 4%;
-    display: flex;
-    padding: 25px 25px;
-    position: sticky;
-}
-
-.logo-container {
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    position: sticky;
-    width: 75vw;
-    height: 28vh;
-    z-index: 100;
-}
-
-.logo {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-
-/* -------- MAIN CONTENT | index.html ------ */
 body {
     background: rgb(20,170,19);
     background: linear-gradient(180deg, rgba(20,170,19,1) 15%, rgba(43,82,44,1) 48%);
 }
 
-.content {
-    border-radius: 3%;
-    max-width: 750px;
-    margin: auto;
-}
-
-.jumbotron video {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    position: relative;
-    border-radius: 5%;
-    z-index: 1;
-    height: 25%;
-    width: 100%;
-    object-fit: cover;
-}
-
-/* ------ LOGIN FORM | index.html ------ */
-.login-container {
-    background-color: rgb(0, 0, 0, 0.3);
-    border-radius: 5%;
-    padding: 15px;
-}
-
-.loginForm {
-    background-color: rgb(255, 255, 255, 0.3);
-    border-radius: 10%;
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 40px;
-    left: 50px;
-    width: 80%;
-    height: 100%;
-    padding: 5% 5%;
-    padding-left: 15%;
-}
+/* ---------------------------- LANDING PAGE | index.html --------------------------------- */
 
 
-.loginBtn {
-    position: relative;
-    left: 5px;
-    width: 100%;
-    height: 30px;
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.6);
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    border-radius: 7px;
-    font-weight: 600;
-    text-align: center;
-    border: none;
-  }
 
 
-  /* -------- PLANT IMAGE GRID | plants.html ------ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------- USERS | register.html & login.html ----------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ---------------------------- PLANT IMAGE GRID | plants.html -------------------------- */
 
   .row {
       display: flex;
@@ -172,3 +162,54 @@ body {
     border-radius: 25%;
     padding-top: 5%;
   }
+
+  .content {
+    border-radius: 3%;
+    max-width: 750px;
+    margin: auto;
+}
+
+
+
+
+
+
+/* ---------------------------- TRACKERS (habits) | trackers.html ------------------------ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------ ANIMATION VIDEO --------- */
+/* .jumbotron video {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    position: relative;
+    border-radius: 5%;
+    z-index: 1;
+    height: 25%;
+    width: 100%;
+    object-fit: cover;
+} */

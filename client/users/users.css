@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;500&display=swap');
+
+body {
+    background: rgb(20,170,19);
+    background: linear-gradient(180deg, rgba(20,170,19,1) 15%, rgba(43,82,44,1) 48%);
+}
