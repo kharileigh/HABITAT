@@ -18,18 +18,6 @@ module.exports = class Plant {
         });
     };
 
-    get trackers(){
-        return new Promise (async (resolve, reject) => {
-            try {
-                const result = await db.query('SELECT habits FROM trackers WHERE plantId = $1;', [ this.id ]);
-                const trackers = result.rows.map(t => ({habit: t.habit, path: `/trackers/${t.id}`}));
-                resolve(trackers);
-            } catch (err) {
-                reject("Author's books could not be found");
-            };
-        });
-    };
-
     static findById(id){
         return new Promise (async (resolve, reject) => {
             try {
