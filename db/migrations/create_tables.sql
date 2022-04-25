@@ -4,19 +4,19 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE plants(
     plantId serial PRIMARY KEY,
-    plant_name varchar(50) NOT NULL
+    plant_name varchar(255) NOT NULL
 );
 
 CREATE TABLE users(
     usersId serial PRIMARY KEY,
-    username varchar(50) NOT NULL,
-    password varchar(50) NOT NULL,
-    name varchar(50) NOT NULL
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    name varchar(255) NOT NULL
 );
 
 CREATE TABLE trackers(
     id serial PRIMARY KEY,
-    habits varchar(50) NOT NULL,
+    habits varchar(255) NOT NULL,
     count INT NOT NULL,
     frequency INT NOT NULL,
     created_on timestamp default CURRENT_TIMESTAMP not null,

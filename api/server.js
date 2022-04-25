@@ -5,11 +5,11 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-const usersRoutes = require('./routes/users');
+// const usersRoutes = require('./routes/users');
 const plantsRoutes = require('./routes/plants');
 const trackersRoutes = require('./routes/trackers');
 
-server.use('/users', usersRoutes);
+// server.use('/users', usersRoutes);
 server.use('/plants', plantsRoutes);
 server.use('/trackers', trackersRoutes);
 

@@ -1,11 +1,12 @@
 const db = require('../dbConfig/init');
 
 module.exports = class Tracker {
-    constructor(data){
+    constructor(data, plant){
         this.id = data.id;
-        this.habits = data.habits;
+        this.habit = data.habit;
         this.count = data.count;
         this.habit_date = data.habit_date;
+        this.plant = { plant_name: data.plant_name, path: `/plants/${data.plantId}` }
     };
 
     static get all(){
@@ -25,7 +26,7 @@ module.exports = class Tracker {
     static findById(id){
         return new Promise (async (resolve, reject) => {
             try {
-                let TrackerData = await db.query(`SELECT * FROM WHERE id = $1;`, [ id ]);
+                let TrackerData = await db.query(`SELECT * FROM trackers WHERE id = $1;`, [ id ]);
                 let Track = new Tracker(TrackerData.rows[0]);
                 resolve (Track);
             } catch (err) {

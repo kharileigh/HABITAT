@@ -5,23 +5,27 @@ VALUES
 ('Aloe Vera'),
 ('Philodendron Green');
 
-INSERT INTO users (username, password)
+INSERT INTO users (username, password, name)
 VALUES
 (
-    'Onur',
-    'Bruh123'
+    'Eluent',
+    'Bruh123',
+    'Onur'
 ),
 (
-    'Khari',
-    'Vibes123'   
+    'goodvibes',
+    'Vibes123',
+    'Khari'  
 ),
 (
-    'Libby',
-    'Plant123'
+    'ILovePlants',
+    'Plant123',
+    'Libby'
 ),
 (
-    'Robyn',
-    'ILoveConstruction123'
+    'sffsaj1',
+    'ILoveConstruction123',
+    'Robyn'
 );
 
 INSERT INTO trackers (habits, count, frequency, created_on)
