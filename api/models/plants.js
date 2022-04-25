@@ -3,7 +3,7 @@ const db = require('../dbConfig/init');
 module.exports = class Plant {
     constructor(data){
         this.id = data.id;
-        this.plantName = data.plantName
+        this.plant_name = data.plant_name;
     };
 
     static get all(){
@@ -11,11 +11,22 @@ module.exports = class Plant {
             try {
                 let plantData = await db.query('SELECT * FROM plants;');
                 let plants = plantData.rows.map(p => new Plant(p));
-                console.log(plants)
                 resolve (plants);
             } catch (err) {
                 reject('Plants not found');
             }
+        });
+    };
+
+    get trackers(){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const result = await db.query('SELECT habits FROM trackers WHERE plantId = $1;', [ this.id ]);
+                const trackers = result.rows.map(t => ({habit: t.habit, path: `/trackers/${t.id}`}));
+                resolve(trackers);
+            } catch (err) {
+                reject("Author's books could not be found");
+            };
         });
     };
 
@@ -24,8 +35,8 @@ module.exports = class Plant {
             try {
                 let plantData = await db.query(`SELECT plants.*, trackers.habits
                                                     FROM plants         
-                                                    JOIN trackers ON plants.id = trackers.plantId
-                                                    WHERE plants.id = $1;`, [ id ]);
+                                                    JOIN trackers ON plants.plantId = trackers.plantId
+                                                    WHERE plants.plantId = $1;`, [ id ]);
                 let plant = new Plant(plantData.rows[0]);
                 resolve (plant);
             } catch (err) {
@@ -38,6 +49,7 @@ module.exports = class Plant {
     static async create(plant){
         return new Promise (async (resolve, reject) => {
             try {
+                console.log(plant)
                 let createdPlant = await db.query(`INSERT INTO Plants (plant_name) VALUES ($1) RETURNING *;`, [plant]);
                 let newPlant = new Plant(createdPlant.rows[0]);
                 resolve  (newPlant);
@@ -47,6 +59,7 @@ module.exports = class Plant {
             }
         });
     };
+
 
     static update(data) {
         return new Promise (async (resolve, reject) => {
