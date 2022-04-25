@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap");
 
-/* ------- NAV BAR ------- */
+/* ------- NAV BAR -------
 nav {
     background-color: rgb(0, 0, 0, 0.33);
     border-radius: 4%;
@@ -22,153 +22,233 @@ nav {
 .logo {
     max-width: 100%;
     max-height: 100%;
-}
-
+} */
 
 /* -------- MAIN CONTENT | index.html ------ */
 body {
-    background: rgb(20,170,19);
-    background: linear-gradient(180deg, rgba(20,170,19,1) 15%, rgba(43,82,44,1) 48%);
+  width: 444px;
+  height: 964px;
+  top: -19px;
+  left: -10px;
 }
 
 .content {
-    border-radius: 3%;
-    max-width: 750px;
-    margin: auto;
+  position: absolute;
+  width: 444px;
+  height: 964px;
+  left: -8px;
+  top: -258px;
+
+  background: linear-gradient(
+    180deg,
+    #14aa13 0%,
+    rgba(13, 192, 12, 0.831771) 45.53%,
+    rgba(13, 193, 12, 0.826935) 45.54%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  border-radius: 28px;
 }
 
-.jumbotron video {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    position: relative;
-    border-radius: 5%;
-    z-index: 1;
-    height: 25%;
-    width: 100%;
-    object-fit: cover;
+.content h1 {
+  color: #ffffff;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 800;
+  line-height: 55px;
+  font-size: 45px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  position: absolute;
+  width: 428px;
+  height: 243px;
+  left: 10px;
+  top: 323px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-container button {
+  position: absolute;
+  width: 184px;
+  height: 42px;
+  left: 13px;
+  top: 625px;
+
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: -0.32px;
+
+  color: #000;
+}
+
+#login {
+  left: 243px;
+}
+
+#register img {
+  width: 21px;
+  height: 40.06px;
+  top: 625px;
+  left: 15px;
+
+  position: absolute;
+  left: 3.5%;
+  right: 91.59%;
+  top: 67.49%;
+  bottom: 28.18%;
+}
+
+#login img {
+  width: 26.29px;
+  height: 36.95;
+  top: 626px;
+  left: 240px;
+
+  position: absolute;
+  left: 56.07%;
+  right: 37.78%;
+  top: 67.6%;
+  bottom: 28.41%;
+}
+
+.logo-container {
+  position: absolute;
+  width: 316px;
+  height: 211px;
+  left: 0px;
+  top: 707px;
+
+  background: url(/client/images/hatitat.png);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 /* ------ LOGIN FORM | index.html ------ */
 .login-container {
-    background-color: rgb(0, 0, 0, 0.3);
-    border-radius: 5%;
-    padding: 15px;
+  background-color: rgb(0, 0, 0, 0.3);
+  border-radius: 5%;
+  padding: 15px;
 }
 
 .loginForm {
-    background-color: rgb(255, 255, 255, 0.3);
-    border-radius: 10%;
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 40px;
-    left: 50px;
-    width: 80%;
-    height: 100%;
-    padding: 5% 5%;
-    padding-left: 15%;
+  background-color: rgb(255, 255, 255, 0.3);
+  border-radius: 10%;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 40px;
+  left: 50px;
+  width: 80%;
+  height: 100%;
+  padding: 5% 5%;
+  padding-left: 15%;
 }
 
-
 .loginBtn {
-    position: relative;
-    left: 5px;
-    width: 100%;
-    height: 30px;
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.6);
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    border-radius: 7px;
-    font-weight: 600;
-    text-align: center;
-    border: none;
-  }
+  position: relative;
+  left: 5px;
+  width: 100%;
+  height: 30px;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0, 0.6);
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  border-radius: 7px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+}
 
+/* -------- PLANT IMAGE GRID | plants.html ------ */
 
-  /* -------- PLANT IMAGE GRID | plants.html ------ */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
 
-  .row {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 0 4px;
-  }
+.column {
+  border-radius: 10%;
+  float: left;
+  flex: 25%;
+  max-width: 33.33%;
+  padding: 25px 7px;
+}
 
+.column img {
+  border-radius: 35%;
+  margin-top: 8px;
+  padding: 10px 40px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
   .column {
-      border-radius: 10%;
-      float: left;
-      flex: 25%;
-      max-width: 33.33%;
-      padding: 25px 7px;
+    flex: 100%;
+    max-width: 100%;
   }
+}
 
-  .column img {
-      border-radius: 35%;
-      margin-top: 8px;
-      padding: 10px 40px;
-      vertical-align: middle;
-      width: 100%;
-  }
+.plant-container {
+  position: relative;
+  text-align: center;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: black;
+}
 
+.plant-name {
+  position: absolute;
+  top: 14%;
+  left: 40%;
+}
 
-  @media screen and (max-width: 600px) {
-      .column {
-          flex: 100%;
-          max-width: 100%;
-      }
-  }
-
-  .plant-container {
-    position: relative;
-    text-align: center;
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-weight: 800;
-    font-size: 20px;
-    color: black;
-  }
-
-  .plant-name {
-    position: absolute;
-    top: 14%;
-    left: 40%;
-  }
-
-  /* ------- NEW PLANT FORM | plants.html -------- */
+/* ------- NEW PLANT FORM | plants.html -------- */
 
 .new-column {
-    background-color: white;
-    border-radius: 35%;
-    margin-top: 8px;
-    padding: 25px;
-    vertical-align: middle;
-    width: 100%;
-    height: 20vh;
-
+  background-color: white;
+  border-radius: 35%;
+  margin-top: 8px;
+  padding: 25px;
+  vertical-align: middle;
+  width: 100%;
+  height: 20vh;
 }
 
 .new-plant-container {
-    position: relative;
- 
-    text-align: center;
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-weight: 800;
-    font-size: 40px;
-    color: black;
-  }
+  position: relative;
 
-  .new-plant-name {
-    position: absolute;
-    top: 50%;
-    left: 25%;
-  }
+  text-align: center;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  color: black;
+}
 
+.new-plant-name {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+}
 
 .plantBtn {
-    position: relative;
-    left: 5px;
-    bottom: 25%;
-    width: 60%;
-    height: 25%;
-    cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.6);
-    border-radius: 25%;
-    padding-top: 5%;
-  }
+  position: relative;
+  left: 5px;
+  bottom: 25%;
+  width: 60%;
+  height: 25%;
+  cursor: pointer;
+  background-color: rgb(0, 0, 0, 0.6);
+  border-radius: 25%;
+  padding-top: 5%;
+}
