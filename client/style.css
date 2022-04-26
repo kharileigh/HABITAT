@@ -12,14 +12,20 @@ html {
     background-size: cover;
   }
   .row h1 {
-    font-size: 3em;
+    font-size: 4em;
     font-family: 'Kalam', cursive;
     color:#FFF;
   }
+
   .row h2{
     font-size: 1em;
     font-family: 'Kalam', cursive;
     color:#FFF;
+   }
+   .row h3{
+    font-size: 2em;
+    font-family: 'Kalam', cursive;
+    color:#FFFFFF;
    }
   
   .btn { 
@@ -50,15 +56,14 @@ html {
   }
   
   .box {
-    padding: 150px;
+    padding: 100px;
     vertical-align: center;
+    text-align: center;
   }
   .block {
     display: block;
     width: 100%;
     border: none;
-    background-color: #04AA6D;
-    color: white;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
