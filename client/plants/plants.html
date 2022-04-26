@@ -1,151 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-    <!-- HABITAT CSS -->
-    <link rel="stylesheet" href="plant.css">
-
-    <!-- ICON LIBRARY -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <title>PLANTS</title>
-  </head>
-  <body>
-
-   
-    <div class="container-fluid plant">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     
-        <div class="header">
-        <h1>SELECT A PLANT</h1>
-        </div>
-   
-        <div class="plant-grid">
+    <script defer src="plants.js"></script>
+    <link rel="stylesheet" href="./plants.css">
+    <title>User Plants</title>
+</head>
+<body>
+    <!-- OUTER CONTAINER-->
+    <div class="container">
 
-       
-            <div class="row">
-
-                <div class="column">
-
-                    <div class="plant-container">
-                        <img src="../images/minicactus.jpg">
-                        <div class="plant-name-lg-topleft">Mini Cactus</div>
-                    </div>
-                
-                    <div class="plant-container">
-                        <img src="../images/peacelily.jpg" style="height:22%">
-                        <div class="plant-name-sm">Peace Lily</div>
-                    </div>
-                    
-                    <div class="plant-container">
-                        <img src ="../images/aloevera.jpg">
-                        <div class="plant-name-lg-left">Aloe Vera</div>
-                    </div>
-                    
-
-
-                </div> 
-
-                <div class="column">
-
-                    <div class="plant-container">
-                        <img src="../images/pothos.jpg">
-                        <div class="plant-name-md">Pothos</div>
-                    </div>
-                    
-                    <div class="plant-container">
-                        <img src="../images/pilea.jpg">
-                        <div class="plant-name-md-long">Pilea Peperomiodes</div>
-                    </div>
-                    
-                    <div class="plant-container">
-                        <img src="../images/philodendron.jpg">
-                        <div class="plant-name-md-long">Philodendron Green</div>
-                    </div>
-
+        <!-- EXISTING PLANTS CONTAINER-->
+        <div class="container-fluid">
+            <div class="row row-cols-1 plant-box align-items-center">
+                <div class="col d-flex justify-content-center">
+                   <h1> MY PLANTS </h1>
                 </div>
-
-                <div class="column">
-
-                    <div class="plant-container">
-                        <img src="../images/monstera.jpg">
-                        <div class="plant-name-lg-topright">Monstera Deliciosa</div>
-                    </div>
-                    
-                    <div class="plant-container">
-                        <img src="../images/spiderplant.jpg" style="height:17%">
-                        <div class="plant-name-sm">Spider Plant</div>
-                    </div>
-               
-                    <div class="plant-container">
-                        <img src="../images/snakeplant.jpg">
-                        <div class="plant-name-lg-right">Snake Plant</div>
-                    </div>
                 
-                </div>
-
-            </div>              
+            <!--PLANT CARDS-->
+                <div class="container">
+                   
+                    <div class="card-columns">
+                      <div class="card plant-card">
+                        <div class="card-body text-center">
+                          <p class="card-text">First plant</p>
+                        </div>
+                      </div>
+                      <div class="card plant-card">
+                        <div class="card-body text-center">
+                          <p class="card-text">Second Plant</p>
+                        </div>
+                      </div>
+                      <div class="card plant-card">
+                        <div class="card-body text-center">
+                          <p class="card-text">Third Plant</p>
+                        </div>
+                      </div>
+                      <div class="card plant-card">
+                        <div class="card-body text-center">
+                          <p class="card-text">Fourth Plant</p>
+                        </div>
+                      </div>  
+                      <div class="card plant-card">
+                        <div class="card-body text-center">
+                          <p class="card-text">Fifth Plant</p>
+                        </div>
+                      </div>
+                      <div class="card plant-card">
+                        <div class="card-body text-center">
+                          <p class="card-text">Sixth Plant</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
         </div>
-        <!-- END OF PLANT GRID -->
-
-        <!-- CREATE NEW PLANT BUTTON -->
-        <div class="new-plant">
-            <h1>+ Create Plant</h1>
-        </div>
-
-
-        <!-- ICONS / TO GO BETWEEN PAGES -->
-        <div class="icons-container">
-            <div class="row">
-
-                <button class="left-button" id="userplant" type="button">
-                    <span class="material-icons">
-                        grass
-                        </span>
-                </button>
-    
-                <button class="middle-button" href="../index.html" id="login" type="button">
-                    <span class="material-icons">
-                        home
-                        </span>
-                </button>
-
-                <button class="right-button" id="trackers" type="button">
-                    <span class="material-icons">
-                        checklist
-                        </span>
-                </button>
-
+                      <!-- Nav bar -->
+            <div class="navbar fixed-bottom bg-light">
+                <a href="">
+                    <img src="../images/icons8-plant-64.png" alt="" />
+                </a>
+                <a href="">
+                    <img src="../images/icons8-home-50.png" alt="" />
+                </a>
+                <a href="">Not sure yet</a>
             </div>
-        </div> 
-
     </div>
-      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-  </body>
+</body>
 </html>
