@@ -1,64 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Montserrat:wght@300&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat Alternates', sans-serif;
-    overflow-x: hidden;
-  }
+html {
+    height: 100%;
+}
 
 body {
-    padding-left: 0;
-    padding-right: 0;
+    min-height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(../images/background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-
-.plant {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    left: -10px;
-    top: -19px;
-    background: linear-gradient(180deg, #14AA13 0%, rgba(13, 192, 12, 0.831771) 45.53%, rgba(13, 193, 12, 0.826935) 45.54%, rgba(0, 0, 0, 0.75) 100%);
-    display: flex;
+.row h1 {
+    font-size: 3em;
+    font-family: 'Kalam', cursive;
+    color:#FFF;
 }
+.row h2{
+    font-size: 1em;
+    font-family: 'Kalam', cursive;
+    color:#FFF;
+   }
 
-.button {
-    
+.btn { 
     background: #FFFFFF;
+    margin: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px; 
-
     font-family: 'Montserrat Alternates', sans-serif;
 }
-.header {
-    position: absolute;
-    width: 75%;
-    height: 40%;
-    margin-left: 53px;
-    margin-top: 38px;
-
+.btn2 {   
+    background: #131c12;
+    margin: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5x;
+    padding-bottom: 5px;
+    border-radius: 20px;
     font-family: 'Montserrat Alternates', sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 19.5px;
-    line-height: 55px;
-    letter-spacing: -0.32px;
-
-    color: #FFFFFF;
+    color: #FFF !important;
 }
-.form-pos {
-    padding-top: 20%;
-    padding-bottom: 20%;
 
-    margin-top: 15%;
-    margin-left: 5%;
+.btn3 {
+    background: #55814c;
+    margin: 10px;
+    border-radius: 20px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: #FFF !important;
+}
 
-    position: absolute;
-    border-radius: 5%;
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.box {
+    padding: 150px;
+    vertical-align: center;
 }
