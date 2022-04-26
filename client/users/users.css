@@ -1,18 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;500&display=swap');
 
-.background {
-    background: linear-gradient(180deg, #14AA13 0%, rgba(13, 192, 12, 0.831771) 45.53%, rgba(13, 193, 12, 0.826935) 45.54%, rgba(0, 0, 0, 0.75) 100%);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat Alternates', sans-serif;
+    overflow-x: hidden;
+  }
+
+body {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 
 .plant {
-    position: absolute;
-    width: 444px;
-    height: 964px;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
     left: -10px;
     top: -19px;
     background: linear-gradient(180deg, #14AA13 0%, rgba(13, 192, 12, 0.831771) 45.53%, rgba(13, 193, 12, 0.826935) 45.54%, rgba(0, 0, 0, 0.75) 100%);
-    border-radius: 28px;
     display: flex;
 }
 
