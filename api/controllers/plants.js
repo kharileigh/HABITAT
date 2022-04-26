@@ -12,10 +12,9 @@ async function index (req, res) {
 async function show (req, res) {
     try {
         const showPlant = await Plant.findById(req.params.id);
-        const plants = await showPlant.trackers;
-        res.status(200).json({ ...showPlant, plants });
+        res.status(200).json(showPlant);
     } catch (err) {
-        res.status(404).json(err);
+        res.status(404).json({err});
     }
 };
 

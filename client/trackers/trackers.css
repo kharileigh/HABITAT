@@ -1,73 +1,72 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Montserrat:wght@300&display=swap');
+
+html {
+    height: 100%;
+}
 
 body {
-  width: 444px;
-  height: 964px;
+    min-height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(../images/background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.row h1 {
+    font-size: 3em;
+    font-family: 'Kalam', cursive;
+    color:#FFF;
+}
+.row h2{
+    font-size: 1em;
+    font-family: 'Kalam', cursive;
+    color:#FFF;
+   }
+
+.btn { 
+    background: #FFFFFF;
+    margin: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px; 
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+.btn2 {   
+    background: #131c12;
+    margin: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5x;
+    padding-bottom: 5px;
+    border-radius: 20px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: #FFF !important;
 }
 
-.content {
-  display: flex;
-  justify-content: center;
-  width: 444px;
-  height: 900px;
-  background: linear-gradient(
-      180deg,
-      #14aa13 0%,
-      rgba(13, 192, 12, 0.831771) 45.53%,
-      rgba(13, 193, 12, 0.826935) 45.54%,
-      rgba(0, 0, 0, 0.75) 100%
-    )
-    no-repeat;
-
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 500;
-  line-height: 43px;
-  text-align: left;
-  color: #ffffff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.btn3 {
+    background: #55814c;
+    margin: 10px;
+    border-radius: 20px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: #FFF !important;
 }
 
-.content h1 {
-  font-size: 35px;
+.box {
+    padding: 100px;
+    vertical-align: center;
 }
 
-.content button {
-  position: absolute;
-  width: 180px;
-  height: 64px;
-
-  background: #5dc24c;
-  border-radius: 32px;
-  bottom: 15%;
-
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 19px;
-  line-height: 23px;
-  text-align: center;
-  color: #ffffff;
+.tracker-box {
+  padding: 50px;
+  vertical-align: center;
 }
 
-.navbar {
-  background-color: white;
-  display: flex;
-  justify-content: space-evenly;
-  overflow: hidden;
-  position: absolute;
-  bottom: 0%;
-  width: 444px;
-}
-
-.plant-container {
-  width: 200px;
-  height: 100px;
-}
-
-.plant-container img {
-  max-width: 100%;
-  max-height: 100%;
+.tracker {
+  background: #FFFFFF;
+  margin: 10px;
+  height: 60vh;
+  width: 60vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px; 
+  font-family: 'Montserrat Alternates', sans-serif;
 }
 
 .habits {

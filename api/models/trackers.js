@@ -1,12 +1,12 @@
 const db = require('../dbConfig/init');
 
 module.exports = class Tracker {
-    constructor(data, plant){
+    constructor(data){
         this.id = data.id;
         this.habit = data.habit;
         this.count = data.count;
-        this.habit_date = data.habit_date;
-        this.plant = { plant_name: data.plant_name, path: `/plants/${data.plantId}` }
+        this.frequency = data.frequency;
+        this.created_on = data.created_on;
     };
 
     static get all(){
@@ -39,8 +39,8 @@ module.exports = class Tracker {
     static async create(track){
         return new Promise (async (resolve, reject) => {
             try {
-                const { habit, count, habit_date } = track;
-                let createdTracker = await db.query(`INSERT INTO Trackers (habit, count, habit_date) VALUES ($1, $2, $3) RETURNING *;`, [ habit, count, habit_date ]);
+                const { habit, count, frequency } = track;
+                let createdTracker = await db.query(`INSERT INTO Trackers (habit, count, frequency) VALUES ($1, $2, $3) RETURNING *;`, [ habit, count, frequency ]);
                 let newTracker = new Tracker(createdTracker.rows[0]);
                 resolve  (newTracker);
             } catch (err) {
@@ -53,10 +53,10 @@ module.exports = class Tracker {
     static update(data) {
         return new Promise (async (resolve, reject) => {
             try {
-                const { habit, count, habit_date, id } = data;
+                const { habit, count, id } = data;
                 let updatedTrackerData = await db.query(`UPDATE Trackers 
-                                                       SET habits = $1, count = $2, habit_date = $3
-                                                       WHERE id = $4;`, [ habit, count, habit_date, id ]);
+                                                       SET habits = $1, count = $2, 
+                                                       WHERE id = $3;`, [ habit, count, id ]);
                 let updatedTracker = new Tracker(updatedTrackerData.rows[0]);
                 resolve (updatedTracker);
             } catch (err) {

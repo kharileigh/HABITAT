@@ -1,16 +1,16 @@
-// const express = require('express');
-// const router = express.Router();
-// const usersController = require('../controllers/users')
+const express = require('express');
+const router = express.Router();
+const usersController = require('../controllers/users')
 
 
-// router.route('/')
-//     .get(usersController.index)
-//     .post(usersController.create)
+router.route('/')
+    .get(usersController.index)
+    .post(usersController.create)
 
-// router.route('/:id')
-//     .get(usersController.show)
-//     .delete(usersController.destroy)
-//     .put(usersController.update)
+router.route('/:id')
+    .get(usersController.show)
+    .delete(usersController.destroy)
+    .put(usersController.update)
 
 
-// module.exports = router;
+module.exports = router;

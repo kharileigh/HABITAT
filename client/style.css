@@ -1,68 +1,67 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Montserrat:wght@300&display=swap");
+
+html {
+  height: 100%;
+}
 
 body {
-  width: 444px;
-  height: 964px;
+  min-height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url(../client/images/background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.row h1 {
+  font-size: 3em;
+  font-family: "Kalam", cursive;
+  color: #fff;
+}
+.row h2 {
+  font-size: 1em;
+  font-family: "Kalam", cursive;
+  color: #fff;
 }
 
-.content {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 444px;
-  height: 649px;
-
-  background: linear-gradient(
-    180deg,
-    #14aa13 0%,
-    rgba(13, 192, 12, 0.831771) 45.53%,
-    rgba(13, 193, 12, 0.826935) 45.54%,
-    rgba(0, 0, 0, 0.75) 100%
-  );
-  border-radius: 28px;
+.btn {
+  background: #ffffff;
+  margin: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+.btn2 {
+  background: #131c12;
+  margin: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5x;
+  padding-bottom: 5px;
+  border-radius: 20px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #fff !important;
 }
 
-.content h1 {
-  color: #ffffff;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 800;
-  line-height: 55px;
-  font-size: 45px;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  position: absolute;
-  bottom: 20%;
-  width: 428px;
-  height: 243px;
+.btn3 {
+  background: #55814c;
+  margin: 10px;
+  border-radius: 20px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #fff !important;
 }
 
-.btn-container {
-  position: absolute;
-  bottom: 5%;
-  display: flex;
-  justify-content: ;
+.box {
+  padding: 150px;
+  vertical-align: center;
 }
-
-.btn-container a {
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-  box-sizing: border-box;
-  border-radius: 4px;
-  padding: 5px 30px;
-  text-decoration: none;
-  text-decoration-color: none;
-  color: black;
-  margin: 20px;
-
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-}
-
-.logo-container {
-  position: absolute;
-  width: 444px;
-  top: 600px;
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
 }
