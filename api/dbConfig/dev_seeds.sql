@@ -28,7 +28,7 @@ VALUES
     'Robyn'
 );
 
-INSERT INTO trackers (habits, count, frequency, created_on)
+INSERT INTO habits (habits, count, frequency, created_on)
 VALUES
 (
     'water',
