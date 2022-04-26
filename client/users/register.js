@@ -1,31 +1,33 @@
-// --------- LOGIN FUNCTIONALITY | index.html --------- //
+// --------- REGISTER FUNCTIONALITY | register.html --------- //
 
-const form = document.getElementById("userLoginForm");
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+// ------ register.html ------ //
+
+const form = document.getElementById("userRegisterForm");
+const username = document.getElementById("usr");
+const password = document.getElementById("pwd");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    userLogin(username, password);
+    userRegister(username, password);
     form.reset();
     redirectHome();
     window.location.href = "plants.html";
 });
 
-async function userLogin(username, password) {
+async function userRegister(username, password) {
     e.preventDefault();
     try{
-        const userLoginElements = {
+        const userRegisterElements = {
             username: username,
             password: password
         }
         const options = {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(Object.fromEntries(userLoginElements))
+            body: JSON.stringify(Object.fromEntries(userRegisterElements))
         }
         const response = await fetch("http://localhost:3000/users", options);
         const { id, err } = await response.json();
