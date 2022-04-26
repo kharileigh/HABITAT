@@ -13,11 +13,11 @@ module.exports = class Habit {
         return new Promise (async (resolve, reject) => {
             try {
                 console.log("is this working")
-                let trackerData = await db.query('SELECT * FROM trackers');
-                let trackers = trackerData.rows.map(t => new Tracker(t));
-                resolve (trackers);
+                let habitData = await db.query('SELECT * FROM habits');
+                let habit = habitData.rows.map(h => new Habit(h));
+                resolve (habit);
             } catch (err) {
-                reject('Trackers not found');
+                reject('Habit not found');
                 console.log(err);
             }
         });

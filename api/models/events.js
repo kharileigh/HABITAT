@@ -3,9 +3,9 @@ const db = require('../dbConfig/init');
 module.exports = class Event {
     constructor(data){
         this.id = data.id;
-        this.habitId = data.habitId;
-        this.plantId = data.plantId;
-        this.usersId = data.usersId;
+        this.habitId = data.habitid;
+        this.plantId = data.plantid;
+        this.usersId = data.usersid;
     };
 
     static get all(){

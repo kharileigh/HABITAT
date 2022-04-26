@@ -66,3 +66,6 @@ VALUES
     20,
     '2022-03-05'
 );
+
+INSERT INTO events (plantId, habitId, userId)
+VALUES (3, 3, 2), (2, 1, 3);
