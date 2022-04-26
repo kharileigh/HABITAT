@@ -4,7 +4,8 @@ module.exports = class User {
     constructor(data){
         this.id = data.id;
         this.username = data.username;
-        this.password = data.password
+        this.password = data.password;
+        this.name = data.name
     };
 
     static get all(){
@@ -37,8 +38,8 @@ module.exports = class User {
     static async create(user){
         return new Promise (async (resolve, reject) => {
             try {
-                const { username, password } = user;
-                let createdUser = await db.query(`INSERT INTO Users (username, password) VALUES ($1, $2) RETURNING *;`, [ username, password ]);
+                const { username, password, name } = user;
+                let createdUser = await db.query(`INSERT INTO Users (username, password, name) VALUES ($1, $2, $3) RETURNING *;`, [ username, password, name ]);
                 let newUser = new User(createdUser.rows[0]);
                 resolve  (newUser);
             } catch (err) {
@@ -75,4 +76,4 @@ module.exports = class User {
             }
         })
     };
-}
+};

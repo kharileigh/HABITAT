@@ -47,7 +47,7 @@ VALUES
     6,
     10,
     '2022-04-15'
-)
+),
 (
     'make plant greener',
     15,
