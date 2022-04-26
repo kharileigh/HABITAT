@@ -67,7 +67,7 @@ module.exports = class Plant {
     destroy(){
         return new Promise(async(resolve, reject) => {
             try {
-                const result = await db.query('DELETE FROM Plants WHERE id = $1 RETURNING *;', [ this.id ]);
+                const result = await db.query('DELETE FROM plants WHERE plantId = $1 RETURNING *;', [ this.id ]);
                 resolve('Plant was deleted')
             } catch (err) {
                 reject('Plant could not be deleted')

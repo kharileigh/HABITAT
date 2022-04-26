@@ -1,9 +1,21 @@
-INSERT INTO plants (plant_name)
+INSERT INTO plants (plant_name, nickname)
 VALUES
-('Snake Plant'),
-('Pothos'),
-('Aloe Vera'),
-('Philodendron Green');
+(
+    'Snake Plant',
+    'Jeffrey'
+),
+(
+    'Pothos',
+    'Adonis'
+),
+(
+    'Aloe Vera',
+    'Bruh'
+),
+(
+    'Philodendron Green',
+    'Oof'
+);
 
 INSERT INTO users (username, password, name)
 VALUES
@@ -28,7 +40,7 @@ VALUES
     'Robyn'
 );
 
-INSERT INTO habits (habits, count, frequency, created_on)
+INSERT INTO habits (habit, count, frequency, created_on)
 VALUES
 (
     'water',

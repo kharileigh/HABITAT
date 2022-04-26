@@ -10,7 +10,7 @@ CREATE TABLE plants(
 );
 
 CREATE TABLE users(
-    usersId serial PRIMARY KEY,
+    userId serial PRIMARY KEY,
     username varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     name varchar(255) NOT NULL
@@ -24,12 +24,12 @@ CREATE TABLE habits(
     created_on timestamp default CURRENT_TIMESTAMP not null
 );
 
-CREATE TABLE event(
+CREATE TABLE events(
     id serial PRIMARY KEY,
-    habitId int,
-    FOREIGN KEY(habitId) REFERENCES habits(habitId),
     plantId int,
-    FOREIGN KEY(plantId) REFERENCES plants(plantId),
-    usersId int,
-    FOREIGN KEY(usersId) REFERENCES users(usersId)
+    FOREIGN KEY(plantId) REFERENCES plants(plantId) ON UPDATE CASCADE,
+    habitId int,
+    FOREIGN KEY(habitId) REFERENCES habits(habitId) ON UPDATE CASCADE,
+    userId int,
+    FOREIGN KEY(userId) REFERENCES users(userId) ON UPDATE CASCADE
 );

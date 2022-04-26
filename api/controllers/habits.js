@@ -1,4 +1,4 @@
-const Tracker= require('../models/trackers');
+const Tracker= require('../models/habits');
 
 async function index (req, res) {
     try {
