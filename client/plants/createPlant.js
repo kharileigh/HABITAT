@@ -24,7 +24,7 @@ form.addEventListener("submit", async (event) => {
 });
 
 
-// ----- POST REQUEST CREATING NEW PLANT ---- //
+// ----- function to create new plant ---- //
 async function createPlant(plantType, nickname, frequency) {
     try{
         const createPlant = {
