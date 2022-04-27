@@ -1,5 +1,3 @@
-const { request } = require("express");
-
 describe('user endpoints', () => {
     let api;
     beforeEach(async () => {
@@ -15,12 +13,10 @@ describe('user endpoints', () => {
         api.close(done)
     })
 
-    it('should return user in database', async () => {
-        const res = await request(api).get('/users');
+    it('should return user based on username and password', async () => {
+        const res = await request(api).get('/user/1');
         expect(res.statusCode).toEqual(200);
-        expect(res.body.length).toEqual();
+        expect(res.body.length).toEqual('User1');
     })
-
-    it('')
 
 }
