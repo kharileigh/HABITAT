@@ -35,10 +35,7 @@ function fetchData() {
             console.log(error);
         });
 
-        // .catch(error => {
-        //     console.log(error);
-        // });
-}
+     
 
 fetchData();
 
