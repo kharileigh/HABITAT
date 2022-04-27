@@ -26,6 +26,8 @@ module.exports = class Plant {
                                                     JOIN trackers ON plants.plantId = trackers.plantId
                                                     WHERE plants.plantId = $1;`, [ id ]);
                 let plant = new Plant(plantData.rows[0]);
+                let updateTime = await db.query(`INSERT INTO updatedOn (now()) 
+                                                    WHERE plantId = $1;`, [ id ]);
                 resolve (plant);
             } catch (err) {
                 reject('Plant not found');
