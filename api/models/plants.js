@@ -2,7 +2,7 @@ const db = require('../dbConfig/init');
 
 module.exports = class Plant {
     constructor(data){
-        this.plantid = data.plantid;
+        this.plantId = data.plantId;
         this.plant_name = data.plant_name;
         this.nickname = data.nickname;
         this.frequency = data.frequency;
