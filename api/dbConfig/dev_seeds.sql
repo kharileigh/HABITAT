@@ -40,31 +40,28 @@ VALUES
     'Robyn'
 );
 
-INSERT INTO habits (habit, count, frequency, created_on)
+INSERT INTO habits (habit, count, frequency)
 VALUES
 (
     'water',
     4,
     5,
-    '2022-04-25'
+    ''
 ),
 (
     'repot',
     2,
-    6,
-    '2022-04-22'
+    6
 ),
 (
     'take plant for a walk',
     6,
-    10,
-    '2022-04-15'
+    10
 ),
 (
     'make plant greener',
     15,
-    20,
-    '2022-03-05'
+    20
 );
 
 INSERT INTO events (plantId, habitId, userId)

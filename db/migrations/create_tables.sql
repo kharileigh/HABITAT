@@ -21,8 +21,20 @@ CREATE TABLE habits(
     habit varchar(255) NOT NULL,
     count INT NOT NULL,
     frequency INT NOT NULL,
-    created_on timestamp default CURRENT_TIMESTAMP not null
+    updatedOn timestamp default CURRENT_TIMESTAMP not null
 );
+
+CREATE OR REPLACE FUNCTION update_updatedOn_column()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.updatedOn = now(); 
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER update_habits_updatedOn BEFORE UPDATE
+ON habits FOR EACH ROW EXECUTE PROCEDURE 
+update_updatedOn_column();
 
 CREATE TABLE events(
     id serial PRIMARY KEY,

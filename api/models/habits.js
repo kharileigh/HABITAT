@@ -6,7 +6,7 @@ module.exports = class Habit {
         this.habit = data.habit;
         this.count = data.count;
         this.frequency = data.frequency;
-        this.created_on = data.created_on;
+        this.updatedOn = data.updatedOn;
     };
 
     static get all(){
