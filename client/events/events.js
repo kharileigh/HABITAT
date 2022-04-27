@@ -1,4 +1,6 @@
-//  ---- GET REQUEST TO GET PLANTS FROM DATABASE ---- //
+//  ---- GET REQUEST FROM EVENTS TABLE ---- //
+
+//           TO BE COMPLETED!!!!!!!!!!!
 
 function fetchData() {
     fetch("http://localhost:3000/plants")
