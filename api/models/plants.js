@@ -2,12 +2,12 @@ const db = require('../dbConfig/init');
 
 module.exports = class Plant {
     constructor(data){
-        this.id = data.id;
+        this.plantid = data.plantid;
         this.plant_name = data.plant_name;
         this.nickname = data.nickname;
         this.frequency = data.frequency;
         this.count = data.count;
-        this.updatedOn = data.updatedOn;
+        this.updatedon = data.updatedon;
     };
 
     static get all(){
@@ -25,13 +25,8 @@ module.exports = class Plant {
     static findById(id){
         return new Promise (async (resolve, reject) => {
             try {
-                let plantData = await db.query(`SELECT plants.*, trackers.habits
-                                                    FROM plants         
-                                                    JOIN trackers ON plants.plantId = trackers.plantId
-                                                    WHERE plants.plantId = $1;`, [ id ]);
+                let plantData = await db.query(`SELECT * FROM plants WHERE plantid = $1;`, [ id ]);
                 let plant = new Plant(plantData.rows[0]);
-                let updateTime = await db.query(`INSERT INTO updatedOn (now()) 
-                                                    WHERE plantId = $1;`, [ id ]);
                 resolve (plant);
             } catch (err) {
                 reject('Plant not found');
@@ -43,8 +38,8 @@ module.exports = class Plant {
     static async create(plant){
         return new Promise (async (resolve, reject) => {
             try {
-                console.log(plant)
-                let createdPlant = await db.query(`INSERT INTO Plants (plant_name) VALUES ($1) RETURNING *;`, [plant]);
+                const { plant_name, nickname, frequency, count } = plant;
+                let createdPlant = await db.query(`INSERT INTO plants (plant_name, nickname, frequency, count) VALUES ($1, $2, $3, $4) RETURNING *;`, [plant_name, nickname, frequency, count]);
                 let newPlant = new Plant(createdPlant.rows[0]);
                 resolve  (newPlant);
             } catch (err) {
@@ -55,13 +50,16 @@ module.exports = class Plant {
     };
 
 
-    static update(data) {
+    static update(plant) {
         return new Promise (async (resolve, reject) => {
             try {
-                const {plantName, id} = data;
-                let updatedPlantData = await db.query(`UPDATE Plants 
-                                                       SET plant_name = $1 
-                                                       WHERE id = $2;`, [ plantName, id ]);
+                const { plant_name, nickname, frequency, count, plantid } = plant;
+                let updatedPlantData = await db.query(`UPDATE plants 
+                                                       SET plant_name = $1,
+                                                       nickname = $2,
+                                                       frequency = $3,
+                                                       count = $4
+                                                       WHERE plantid = $5;`, [ plant_name, nickname, frequency, count, plantid ]);
                 let updatedPlant = new Plant(updatedPlantData.rows[0]);
                 resolve (updatedPlant);
             } catch (err) {
@@ -73,7 +71,7 @@ module.exports = class Plant {
     destroy(){
         return new Promise(async(resolve, reject) => {
             try {
-                const result = await db.query('DELETE FROM plants WHERE plantId = $1 RETURNING *;', [ this.id ]);
+                const result = await db.query('DELETE FROM plants WHERE plantid = $1 RETURNING *;', [ this.plantid ]);
                 resolve('Plant was deleted')
             } catch (err) {
                 reject('Plant could not be deleted')

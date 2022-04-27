@@ -5,12 +5,12 @@ DROP TABLE IF EXISTS events;
 
 /* creating plants table */
 CREATE TABLE plants(
-    plantId serial PRIMARY KEY,
+    plantid serial PRIMARY KEY,
     plant_name varchar(255) NOT NULL,
     nickname varchar(255) NOT NULL,
     frequency INT NOT NULL,
     count INT not NULL,
-    updatedOn timestamp default CURRENT_TIMESTAMP not null
+    updatedon timestamp default CURRENT_TIMESTAMP not null
 );
 
 /* function for updating the current TIME for updatedOn WHEN a change is made in that row */
@@ -37,7 +37,7 @@ CREATE DOMAIN email AS citext
 CREATE TYPE user_role_type AS ENUM ('admin', 'user');
 
 CREATE TABLE IF NOT EXISTS user_account (
-    userId SERIAL PRIMARY KEY,
+    userid SERIAL PRIMARY KEY,
     user_name citext NOT NULL
       CONSTRAINT duplicate_username UNIQUE
       CONSTRAINT username_length CHECK (LENGTH(user_name) BETWEEN 3 AND 30),
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS user_account (
 /* the holy grail - connects all tables together as an EVENT */
 CREATE TABLE events(
     id serial PRIMARY KEY,
-    plantId int,
-    FOREIGN KEY(plantId) REFERENCES plants(plantId) ON UPDATE CASCADE,
-    userId int,
-    FOREIGN KEY(userId) REFERENCES user_account(userId) ON UPDATE CASCADE
+    plantid int,
+    FOREIGN KEY(plantid) REFERENCES plants(plantid) ON UPDATE CASCADE,
+    userid int,
+    FOREIGN KEY(userid) REFERENCES user_account(userid) ON UPDATE CASCADE
 );

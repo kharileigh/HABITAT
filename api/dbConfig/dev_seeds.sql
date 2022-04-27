@@ -1,32 +1,28 @@
-INSERT INTO plants (plant_name, nickname, frequency, count, updatedOn)
+INSERT INTO plants (plant_name, nickname, frequency, count)
 VALUES
 (
     'Snake Plant',
     'Jeffrey',
     10,
-    5,
-    '2022-03-25'
+    5
 ),
 (
     'Pothos',
     'Adonis',
     20,
-    3,
-    '2022-04-21'
+    3
 ),
 (
     'Aloe Vera',
     'Bruh',
     4,
-    2,
-    '2022-04-27'
+    2
 ),
 (
     'Philodendron Green',
     'Oof',
     5,
-    2,
-    '2022-04-25'
+    2
 );
 
 INSERT INTO user_account (user_name, user_password, user_email)
@@ -65,5 +61,5 @@ INSERT INTO user_account (
     'admin'
 );
 
-INSERT INTO events (plantId, userId)
+INSERT INTO events (plantId, userid)
 VALUES (3, 2), (2, 3);
