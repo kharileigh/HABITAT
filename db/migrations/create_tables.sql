@@ -9,7 +9,7 @@ CREATE TABLE plants(
     plant_name varchar(255) NOT NULL,
     nickname varchar(255) NOT NULL,
     frequency INT NOT NULL,
-    count INT not NULL default 0,
+    count INT default 0,
     updatedon timestamp default CURRENT_TIMESTAMP not null
 );
 
