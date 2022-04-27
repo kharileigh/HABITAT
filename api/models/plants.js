@@ -4,6 +4,10 @@ module.exports = class Plant {
     constructor(data){
         this.id = data.id;
         this.plant_name = data.plant_name;
+        this.nickname = data.nickname;
+        this.frequency = data.frequency;
+        this.count = data.count;
+        this.updatedOn = data.updatedOn;
     };
 
     static get all(){

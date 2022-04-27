@@ -27,10 +27,15 @@ CREATE TRIGGER update_plants_updatedOn BEFORE UPDATE
 ON plants FOR EACH ROW EXECUTE PROCEDURE 
 update_updatedOn_column();
 
+/* creates citext posgresql extension for user table */
+CREATE EXTENSION IF NOT EXISTS citext;
+/* creates email column for user - regrex for characters below before @ - after @ */
+CREATE DOMAIN email AS citext
+  CHECK ( value ~* '^[a-z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*$' );
+
 /* gives a role type to users - either admin or user */
 CREATE TYPE user_role_type AS ENUM ('admin', 'user');
 
-/* citeext - case insensitive - converts the query string and the value of the comparing column to lowercase using LOWER - can use WHERE as you please*/
 CREATE TABLE IF NOT EXISTS user_account (
     userId SERIAL PRIMARY KEY,
     user_name citext NOT NULL
@@ -48,5 +53,5 @@ CREATE TABLE events(
     plantId int,
     FOREIGN KEY(plantId) REFERENCES plants(plantId) ON UPDATE CASCADE,
     userId int,
-    FOREIGN KEY(userId) REFERENCES users(userId) ON UPDATE CASCADE
+    FOREIGN KEY(userId) REFERENCES user_account(userId) ON UPDATE CASCADE
 );

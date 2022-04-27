@@ -5,31 +5,31 @@ VALUES
     'Jeffrey',
     10,
     5,
-    '2022-04-20 12:05:06'
+    '2022-03-25'
 ),
 (
     'Pothos',
     'Adonis',
     20,
     3,
-    '2022-04-21 13:05:06'
+    '2022-04-21'
 ),
 (
     'Aloe Vera',
     'Bruh',
     4,
     2,
-    '2022-04-27 10:05:06'
+    '2022-04-27'
 ),
 (
     'Philodendron Green',
-    'Oof'
+    'Oof',
     5,
     2,
-    '2022-04-25 11:05:06'
+    '2022-04-25'
 );
 
-INSERT INTO users (user_name, user_password, user_email)
+INSERT INTO user_account (user_name, user_password, user_email)
 VALUES
 (
     'Eluent',
@@ -47,10 +47,23 @@ VALUES
     'libby@outlook.com'
 ),
 (
-    'sffsaj1',
+    'robyn',
     '$2y$12$Nu9OPRgbeYDS1BIuLJIYmuYMSyUMNj6nyBUHuDBEll5VGPUMW8Iwe',
     'robyn@outlook.com'
 );
 
-INSERT INTO events (plantId, habitId, userId)
-VALUES (3, 3, 2), (2, 1, 3);
+/* giving myself admin role */
+INSERT INTO user_account (
+    user_name,
+    user_password,
+    user_email,
+    user_role
+) VALUES (
+    'onur',
+    '$2y$12$Nu9OPRgbeYDS1BIuLFIYmuYMSyUMNj6nyBUHuDBEll5VGPUMW8Iwe',
+    NULL,
+    'admin'
+);
+
+INSERT INTO events (plantId, userId)
+VALUES (3, 2), (2, 3);
