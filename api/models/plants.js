@@ -39,12 +39,14 @@ module.exports = class Plant {
         return new Promise (async (resolve, reject) => {
             try {
                 const { plant_name, nickname, frequency, count } = plant;
+                console.log(plant);
                 let createdPlant = await db.query(`INSERT INTO plants (plant_name, nickname, frequency, count) VALUES ($1, $2, $3, $4) RETURNING *;`, [plant_name, nickname, frequency, count]);
                 let newPlant = new Plant(createdPlant.rows[0]);
+                console.log(newPlant);
                 resolve  (newPlant);
             } catch (err) {
-                reject('Plant could not be created');
                 console.log(err);
+                reject('Plant could not be created');
             }
         });
     };

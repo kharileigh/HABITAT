@@ -3,6 +3,7 @@
 function fetchData() {
     fetch("http://localhost:3000/plants")
         .then(response => {
+
             console.log(response);
             if(!response.ok) {
                 throw Error("ERROR");
@@ -11,13 +12,14 @@ function fetchData() {
         })
         .then(data => {
             // --- guard condition | check this for immediately fails first --- //
-            if (data.data.length === 0) {
-                window.location.href = "createPlant.html"
+            console.log(data);
+            if (data.length === 0) {
+                // window.location.href = "createPlant.html"
             }
 
             // ---- map gives back an array of Plant with its details as on object ---- //
-            console.log(data.data);
-            const html = data.data
+            console.log(data);
+            const html = data
                 .map(plant => {
                     return `
                         <p> ${plant.nickname} </p>
@@ -26,7 +28,7 @@ function fetchData() {
                 .join("");
 
             document
-                .querySelector("plantInfo")
+                .querySelector("#plantInfo")
                 .insertAdjacentHTML('afterbegin', html);
 
         })
@@ -34,8 +36,7 @@ function fetchData() {
         .catch(error => {
             console.log(error);
         });
-
-     
+}     
 
 fetchData();
 
