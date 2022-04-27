@@ -3,27 +3,30 @@
 // ------ register.html ------ //
 
 const form = document.getElementById("userRegisterForm");
+const firstname = document.getElementById("firstname");
 const username = document.getElementById("usr");
 const email = document.getElementById("email");
 const password = document.getElementById("pwd");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const firstname = event.target.firstname.value;
     const username = event.target.username.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    userRegister(username, email, password);
+    userRegister(username, firstname, email, password);
     form.reset();
     redirectHome();
-    window.location.href = "plants.html";
+    window.location.href = "login.html";
 });
 
-async function userRegister(username, email, password) {
+async function userRegister(username, firstname, email, password) {
     e.preventDefault();
     try{
         const userRegisterElements = {
             username: username,
+            firstname: firstname,
             email: email,
             password: password
         }
@@ -45,5 +48,5 @@ async function userRegister(username, email, password) {
 }
 
 function redirectHome() {
-    window.location.href = "plants.html";
+    window.location.href = "login.html";
 }
