@@ -27,15 +27,16 @@ form.addEventListener("submit", async (event) => {
 // ----- function to create new plant ---- //
 async function createPlant(plantType, nickname, frequency) {
     try{
-        const createPlant = {
+        const plantToCreate = {
             plant_name: plantType,
             nickname: nickname,
-            frequency: frequency
+            frequency: frequency,
+            count: 0
         }
         const options = {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(Object.fromEntries(createPlant))
+            body: JSON.stringify(plantToCreate)
         }
         const response = await fetch("http://localhost:3000/plants", options);
         const { id, err } = await response.json();
