@@ -4,6 +4,10 @@ module.exports = class Plant {
     constructor(data){
         this.id = data.id;
         this.plant_name = data.plant_name;
+        this.nickname = data.nickname;
+        this.frequency = data.frequency;
+        this.count = data.count;
+        this.updatedOn = data.updatedOn;
     };
 
     static get all(){
@@ -26,6 +30,8 @@ module.exports = class Plant {
                                                     JOIN trackers ON plants.plantId = trackers.plantId
                                                     WHERE plants.plantId = $1;`, [ id ]);
                 let plant = new Plant(plantData.rows[0]);
+                let updateTime = await db.query(`INSERT INTO updatedOn (now()) 
+                                                    WHERE plantId = $1;`, [ id ]);
                 resolve (plant);
             } catch (err) {
                 reject('Plant not found');
@@ -67,7 +73,7 @@ module.exports = class Plant {
     destroy(){
         return new Promise(async(resolve, reject) => {
             try {
-                const result = await db.query('DELETE FROM Plants WHERE id = $1 RETURNING *;', [ this.id ]);
+                const result = await db.query('DELETE FROM plants WHERE plantId = $1 RETURNING *;', [ this.id ]);
                 resolve('Plant was deleted')
             } catch (err) {
                 reject('Plant could not be deleted')

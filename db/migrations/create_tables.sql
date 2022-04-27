@@ -1,27 +1,57 @@
+/* if this table exists DROP IT when setting the database up */
 DROP TABLE IF EXISTS plants;
-DROP TABLE IF EXISTS trackers;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user_account;
+DROP TABLE IF EXISTS events;
 
+/* creating plants table */
 CREATE TABLE plants(
     plantId serial PRIMARY KEY,
-    plant_name varchar(255) NOT NULL
-);
-
-CREATE TABLE users(
-    usersId serial PRIMARY KEY,
-    username varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    name varchar(255) NOT NULL
-);
-
-CREATE TABLE trackers(
-    id serial PRIMARY KEY,
-    habits varchar(255) NOT NULL,
-    count INT NOT NULL,
+    plant_name varchar(255) NOT NULL,
+    nickname varchar(255) NOT NULL,
     frequency INT NOT NULL,
-    created_on timestamp default CURRENT_TIMESTAMP not null,
-    usersId int,
-    FOREIGN KEY(usersId) REFERENCES users(usersId),
+    count INT not NULL,
+    updatedOn timestamp default CURRENT_TIMESTAMP not null
+);
+
+/* function for updating the current TIME for updatedOn WHEN a change is made in that row */
+CREATE OR REPLACE FUNCTION update_updatedOn_column()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.updatedOn = now(); 
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+/* trigger for when it updates a row - update the updatedOn time to NOW (now())  might need to change it */
+CREATE TRIGGER update_plants_updatedOn BEFORE UPDATE
+ON plants FOR EACH ROW EXECUTE PROCEDURE 
+update_updatedOn_column();
+
+/* creates citext posgresql extension for user table */
+CREATE EXTENSION IF NOT EXISTS citext;
+/* creates email column for user - regrex for characters below before @ - after @ */
+CREATE DOMAIN email AS citext
+  CHECK ( value ~* '^[a-z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*$' );
+
+/* gives a role type to users - either admin or user */
+CREATE TYPE user_role_type AS ENUM ('admin', 'user');
+
+CREATE TABLE IF NOT EXISTS user_account (
+    userId SERIAL PRIMARY KEY,
+    user_name citext NOT NULL
+      CONSTRAINT duplicate_username UNIQUE
+      CONSTRAINT username_length CHECK (LENGTH(user_name) BETWEEN 3 AND 30),
+    user_password CHAR(60) NOT NULL,
+    user_email email
+      CONSTRAINT duplicate_email UNIQUE,
+    user_role user_role_type DEFAULT 'user'
+);
+
+/* the holy grail - connects all tables together as an EVENT */
+CREATE TABLE events(
+    id serial PRIMARY KEY,
     plantId int,
-    FOREIGN KEY(plantId) REFERENCES plants(plantId)
+    FOREIGN KEY(plantId) REFERENCES plants(plantId) ON UPDATE CASCADE,
+    userId int,
+    FOREIGN KEY(userId) REFERENCES user_account(userId) ON UPDATE CASCADE
 );

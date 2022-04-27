@@ -1,23 +1,23 @@
 const db = require('../dbConfig/init');
 
-module.exports = class Tracker {
+module.exports = class Habit {
     constructor(data){
         this.id = data.id;
         this.habit = data.habit;
         this.count = data.count;
         this.frequency = data.frequency;
-        this.created_on = data.created_on;
+        this.updatedOn = data.updatedOn;
     };
 
     static get all(){
         return new Promise (async (resolve, reject) => {
             try {
                 console.log("is this working")
-                let trackerData = await db.query('SELECT * FROM trackers');
-                let trackers = trackerData.rows.map(t => new Tracker(t));
-                resolve (trackers);
+                let habitData = await db.query('SELECT * FROM habits');
+                let habit = habitData.rows.map(h => new Habit(h));
+                resolve (habit);
             } catch (err) {
-                reject('Trackers not found');
+                reject('Habit not found');
                 console.log(err);
             }
         });

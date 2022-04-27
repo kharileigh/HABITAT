@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const trackersController = require('../controllers/trackers')
+const trackersController = require('../controllers/habits')
 
 router.route('/')
     .get(trackersController.index)

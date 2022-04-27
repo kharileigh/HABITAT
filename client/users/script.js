@@ -1,4 +1,5 @@
-// --------- LOGIN FUNCTIONALITY | index.html --------- //
+// --------- LOGIN FUNCTIONALITY | login.html --------- //
+
 
 const form = document.getElementById("userLoginForm");
 const username = document.getElementById("username");
@@ -23,7 +24,7 @@ async function userLogin(username, password) {
             password: password
         }
         const options = {
-            method: "POST",
+            method: "GET",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(Object.fromEntries(userLoginElements))
         }
@@ -42,3 +43,6 @@ async function userLogin(username, password) {
 function redirectHome() {
     window.location.href = "plants.html";
 }
+
+
+
