@@ -7,39 +7,25 @@ const frequency = document.getElementById("frequency");
    
 
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const plantType = event.target.plantType.value;
     const nickname = event.target.nickname.value;
-    const frequency = event.target.frequency.value;
+    const frequency = parseInt(document.querySelector('input[name="options"]:checked').value);
+    console.log(frequency);
 
 
-    convertFrequency();
-    createPlant(plantType, nickname, frequency);
+    await createPlant(plantType, nickname, frequency);
     form.reset();
     redirectHome();
-    window.location.href = "plants.html";
+
 
   
 });
 
-// ----- FUNCTION PULLING DATA FROM RADIO BUTTON ----- //
-function convertFrequency() {
-    let numFrequency;
-    if (frequency == document.getElementById("daily")) {
-        return numFrequency = 365;
-    } else if (frequency == document.getElementById("weekly")) {
-        return numFrequency = 52;
-    } else if (frequency == document.getElementById("monthly")) {
-        return numFrequency = 12;
-    } else {
-        return error;
-    }
-}
 
-// ----- POST REQUEST CREATING NEW PLANT ---- //
+// ----- function to create new plant ---- //
 async function createPlant(plantType, nickname, frequency) {
-    e.preventDefault();
     try{
         const createPlant = {
             plant_name: plantType,
