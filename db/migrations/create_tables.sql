@@ -32,7 +32,7 @@ CREATE TYPE user_role_type AS ENUM ('admin', 'user');
 
 /* citeext - case insensitive - converts the query string and the value of the comparing column to lowercase using LOWER - can use WHERE as you please*/
 CREATE TABLE IF NOT EXISTS user_account (
-    user_id SERIAL PRIMARY KEY,
+    userId SERIAL PRIMARY KEY,
     user_name citext NOT NULL
       CONSTRAINT duplicate_username UNIQUE
       CONSTRAINT username_length CHECK (LENGTH(user_name) BETWEEN 3 AND 30),
