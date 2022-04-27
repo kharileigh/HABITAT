@@ -1,6 +1,6 @@
 /* if this table exists DROP IT when setting the database up */
 DROP TABLE IF EXISTS plants;
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS user_account;
 DROP TABLE IF EXISTS events;
 
 /* creating plants table */
@@ -27,12 +27,19 @@ CREATE TRIGGER update_plants_updatedOn BEFORE UPDATE
 ON plants FOR EACH ROW EXECUTE PROCEDURE 
 update_updatedOn_column();
 
-/* users table - standard stuff */
-CREATE TABLE users(
-    userId serial PRIMARY KEY,
-    username varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    name varchar(255) NOT NULL
+/* gives a role type to users - either admin or user */
+CREATE TYPE user_role_type AS ENUM ('admin', 'user');
+
+/* citeext - case insensitive - converts the query string and the value of the comparing column to lowercase using LOWER - can use WHERE as you please*/
+CREATE TABLE IF NOT EXISTS user_account (
+    user_id SERIAL PRIMARY KEY,
+    user_name citext NOT NULL
+      CONSTRAINT duplicate_username UNIQUE
+      CONSTRAINT username_length CHECK (LENGTH(user_name) BETWEEN 3 AND 30),
+    user_password CHAR(60) NOT NULL,
+    user_email email
+      CONSTRAINT duplicate_email UNIQUE,
+    user_role user_role_type DEFAULT 'user'
 );
 
 /* the holy grail - connects all tables together as an EVENT */
