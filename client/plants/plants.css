@@ -57,6 +57,13 @@ html {
     font-family: 'Montserrat', sans-serif;
     color: #FFF !important;
   }
+  .btn4 {
+    background: #3C6E71;
+    margin: 10px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #FFF !important;
+  }
   
   .box {
     padding: 100px;
