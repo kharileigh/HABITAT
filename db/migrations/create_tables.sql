@@ -1,7 +1,7 @@
 /* if this table exists DROP IT when setting the database up */
 DROP TABLE IF EXISTS plants;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS events;
 
 /* creating plants table */
 CREATE TABLE plants(

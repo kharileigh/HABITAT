@@ -1,5 +1,17 @@
 /* PSUEDOCODE
 
+CREATEPLANT.HTML
+
+
+
+
+
+
+
+
+
+PLANTS.HTML
+
 FETCH plant data from database for this user
 
 if user has no plants in the database
