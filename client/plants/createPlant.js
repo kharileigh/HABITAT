@@ -3,24 +3,48 @@
 const form = document.getElementById("createPlantForm");
 const plantType = document.getElementById("plantType");
 const nickname = document.getElementById("nickname");
+const frequency = document.getElementById("frequency");
+   
+
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const plantType = event.target.plantType.value;
     const nickname = event.target.nickname.value;
+    const frequency = event.target.frequency.value;
 
-    createPlant(plantType, nickname);
+
+    convertFrequency();
+    createPlant(plantType, nickname, frequency);
     form.reset();
     redirectHome();
     window.location.href = "plants.html";
+
+  
 });
 
-async function createPlant(plantType, nickname) {
+// ----- FUNCTION PULLING DATA FROM RADIO BUTTON ----- //
+function convertFrequency() {
+    let numFrequency;
+    if (frequency == document.getElementById("daily")) {
+        return numFrequency = 365;
+    } else if (frequency == document.getElementById("weekly")) {
+        return numFrequency = 52;
+    } else if (frequency == document.getElementById("monthly")) {
+        return numFrequency = 12;
+    } else {
+        return error;
+    }
+}
+
+// ----- POST REQUEST CREATING NEW PLANT ---- //
+async function createPlant(plantType, nickname, frequency) {
     e.preventDefault();
     try{
         const createPlant = {
             plant_name: plantType,
             nickname: nickname,
+            frequency: frequency
         }
         const options = {
             method: "POST",
@@ -32,7 +56,7 @@ async function createPlant(plantType, nickname) {
         if(err) {
             throw Error(err)
         } else {
-            window.location.hash = `#users/${id}`
+            window.location.hash = `#plants/${id}`
         }
     } catch (err) {
         console.warn(err);
