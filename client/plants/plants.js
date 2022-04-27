@@ -1,25 +1,44 @@
-/* PSUEDOCODE
+//  ---- GET REQUEST TO GET PLANTS FROM DATABASE ---- //
 
-CREATEPLANT.HTML
+function fetchData() {
+    fetch("http://localhost:3000/plants")
+        .then(response => {
+            console.log(response);
+            if(!response.ok) {
+                throw Error("ERROR");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // --- guard condition | check this for immediately fails first --- //
+            if (data.data.length === 0) {
+                window.location.href = "createPlant.html"
+            }
 
+            // ---- map gives back an array of Plant with its details as on object ---- //
+            console.log(data.data);
+            const html = data.data
+                .map(plant => {
+                    return `
+                        <p> ${plant.nickname} </p>
+                    `;
+                })
+                .join("");
 
+            document
+                .querySelector("plantInfo")
+                .insertAdjacentHTML('afterbegin', html);
 
+        })
+        // ----- REDIRECT USER HERE TO CREATE PLANT PAGE???
+        .catch(error => {
+            console.log(error);
+        });
 
+        // .catch(error => {
+        //     console.log(error);
+        // });
+}
 
+fetchData();
 
-
-
-
-PLANTS.HTML
-
-FETCH plant data from database for this user
-
-if user has no plants in the database
-    display message: You have no plants yet...
-
-if user has plants in the database
-    then:
-        create a card column in plants.html containing the same number of cards as plants
-        map each plant in the database to a card on plants.html
-        
-*/
