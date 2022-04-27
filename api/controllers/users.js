@@ -1,12 +1,7 @@
-const { Router } = require("express");
-const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
-const User = require("../models/user");
+const User = require("../models/users");
 const verifyToken = require("../middleware/verifyToken");
-
-const userController = Router();
 
 async function index (req, res) {
     try {
@@ -29,11 +24,9 @@ async function show (req, res) {
         res.status(err.code).json({ success : false, message : err.message })
     }
 }
-// Create
 
-userController.post("/", bodyParser.json(), async (req, res) => {
+async function create (req, res) {
     try {
-
         // username & password are absolutely required
         if (!req.body.username || !req.body.password) {
             throw { code: 400, message: "Insufficient information provided to create account"}
@@ -46,23 +39,9 @@ userController.post("/", bodyParser.json(), async (req, res) => {
     } catch (err) {
         res.status(err.code).json({ success : false, message : err.message })
     }
-})
+}
 
-// Show
-userController.get("/:username", async (req, res) => {
-    try {
-        const user = await User.getUserByUsername(req.params.username);
-        res.status(200).json({ success : true, user : user.details })
-    } catch (err) {
-        if (!err.hasOwnProperty("code")) {
-            err = {code : 500, message : err.message }
-        }
-        res.status(err.code).json({ success : false, message : err.message })
-    }
-})
-
-// Delete
-userController.delete("/:username", verifyToken, bodyParser.json(), async (req, res) => {
+async function destroy (req, res) {
     try {
         const token = header["authorization"].split(" ")[1];
         const payload = jwt.decode(token);
@@ -87,6 +66,8 @@ userController.delete("/:username", verifyToken, bodyParser.json(), async (req, 
         }
         res.status(err.code).json({ success : false, message : err.message });
     }
-})
+}
 
-module.exports = userController;
+
+
+module.exports = { index, show, create, destroy };
