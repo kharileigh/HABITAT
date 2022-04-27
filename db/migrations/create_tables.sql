@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS plants;
 DROP TABLE IF EXISTS trackers;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS events;
 
 CREATE TABLE plants(
     plantId serial PRIMARY KEY,
