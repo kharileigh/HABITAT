@@ -15,18 +15,18 @@ form.addEventListener("submit", (event) => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    userRegister(username, firstname, email, password);
+    userRegister(firstname, username, email, password);
     form.reset();
     redirectHome();
     window.location.href = "login.html";
 });
 
-async function userRegister(username, firstname, email, password) {
+async function userRegister(firstname, username, email, password) {
     e.preventDefault();
     try{
         const userRegisterElements = {
-            username: username,
             firstname: firstname,
+            username: username,
             email: email,
             password: password
         }

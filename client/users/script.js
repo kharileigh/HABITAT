@@ -22,12 +22,12 @@ async function userLogin(username, password) {
   try {
     const userLoginElements = {
       username: username,
-      password: password,
+      password: password
     };
     const options = {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(userLoginElements)),
+      body: JSON.stringify(userLoginElements)
     };
     const response = await fetch("http://localhost:3000/users", options);
     const { id, err } = await response.json();
