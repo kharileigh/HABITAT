@@ -22,7 +22,7 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
-/* trigger for when it updates a row - update the updatedOn time to NOW (now()) for each row? might need to change it */
+/* trigger for when it updates a row - update the updatedOn time to NOW (now())  might need to change it */
 CREATE TRIGGER update_plants_updatedOn BEFORE UPDATE
 ON plants FOR EACH ROW EXECUTE PROCEDURE 
 update_updatedOn_column();

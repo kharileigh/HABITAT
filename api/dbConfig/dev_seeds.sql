@@ -17,27 +17,27 @@ VALUES
     'Oof'
 );
 
-INSERT INTO users (username, password, name)
+INSERT INTO users (user_name, user_password, user_email)
 VALUES
 (
     'Eluent',
-    'Bruh123',
-    'Onur'
+    '$2y$12$Nu9OPRgbeYDS1BIuLFIYmuYMSyUMNj6nyBUHuDBEll5VGPUMW8Iwe',
+    'onur@outlook.com'
 ),
 (
     'goodvibes',
-    'Vibes123',
-    'Khari'  
+    '$2y$12$Nu9OPRgbeYDS1BIuLFIYmuYMSyUMNj6nyBUHuDBEll5VGPUMW8Iwe',
+    'khari@outlook.com'  
 ),
 (
     'ILovePlants',
-    'Plant123',
-    'Libby'
+    '$2y$12$Nu9OPRgbeYDS1BIuLFIYmuYMSyUMNj6nyBUHuDBEll5VGPUMW8Iwe',
+    'libby@outlook.com'
 ),
 (
     'sffsaj1',
-    'ILoveConstruction123',
-    'Robyn'
+    '$2y$12$Nu9OPRgbeYDS1BIuLFIYmuYMSyUMNj6nyBUHuDBEll5VGPUMW8Iwe',
+    'robyn@outlook.com'
 );
 
 INSERT INTO habits (habit, count, frequency)
