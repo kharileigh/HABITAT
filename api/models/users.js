@@ -12,6 +12,7 @@ class User {
      */
     constructor (data) {
         this.id = data.user_id;
+        this.name = data.name;
         this.username = data.user_name;
         this.password = data.user_password;
         this.email = data.user_email;
@@ -57,14 +58,16 @@ class User {
         return new Promise( async (resolve, reject) => {
             try {
                 const result = await db.query(`INSERT INTO user_account (
+                                                name,
                                                 user_name,
                                                 user_password,
                                                 user_email,
                                                 user_role
                                             ) VALUES (
-                                                $1, $2, $3, $4
+                                                $1, $2, $3, $4, $5
                                             ) RETURNING *;`,
-                                              [data.username,
+                                              [data.name,
+                                               data.username,
                                                data.password,
                                                data.email,
                                                data.role]);
