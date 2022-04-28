@@ -5,7 +5,7 @@ const usersController = require('../controllers/users');
 router.route('/register')
     .post(usersController.register)
 
-router.router('/login')
+router.route('/login')
     .post(usersController.login)
 
 router.route('/logout')
