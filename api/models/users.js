@@ -1,5 +1,6 @@
 const db = require('../dbConfig/init');
-
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 /**
  * An app user
  */
@@ -12,6 +13,7 @@ class User {
      */
     constructor (data) {
         this.id = data.user_id;
+        this.name = data.name;
         this.username = data.user_name;
         this.password = data.user_password;
         this.email = data.user_email;
@@ -53,21 +55,14 @@ class User {
      * @param {object} data An object describing a user
      * @returns {Promise} A promise that resolves to a User object
      */
-    static create(data) {
+    static async create(data) {
         return new Promise( async (resolve, reject) => {
             try {
-                const result = await db.query(`INSERT INTO user_account (
-                                                user_name,
-                                                user_password,
-                                                user_email,
-                                                user_role
-                                            ) VALUES (
-                                                $1, $2, $3, $4
-                                            ) RETURNING *;`,
-                                              [data.username,
-                                               data.password,
-                                               data.email,
-                                               data.role]);
+                const { firstname, username, hashedPassword, email } = data;
+                console.log(data);
+                console.log(username);
+                const result = await db.query(`INSERT INTO user_account (name, user_name, user_password, user_email) VALUES ($1, $2, $3, $4) RETURNING *;`, [firstname, username, hashedPassword, email]);
+
                 const user = new User(result.rows[0]);
                 resolve(user);
             } catch (err) {
@@ -90,13 +85,40 @@ class User {
         })
     }
 
+    static async findByEmail(email) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const user = await db.query(`SELECT * FROM user_account
+                                            WHERE user_email = $1`, [ email ])
+                resolve(user);
+            } catch (err) {
+                reject(`User with email: ${email} not found`);
+            }
+        });
+    }
+
+    static async login (email, password) {
+        console.log(email, password)
+        const user = await this.findByEmail(email);
+        console.log(user);
+        if (user) {
+            const findPassword = await db.query(`SELECT user_password FROM user_account`)
+            const auth = await bcrypt.compare(password, user.password)
+            if (auth) {
+                return user;
+            }
+            throw Error('Wrong password');
+        }
+        throw Error('Wrong email');
+    }
+
     /**
      * Returns a user object matching a given username
      * 
      * @param {string} username the username to search for
      * @returns {object} A user object
      */
-    static getUserByUsername (username) {
+    static async getUserByUsername (username) {
         return new Promise ( async (resolve, reject) => {
             try {
                 const result = await db.query(`SELECT *
@@ -104,7 +126,7 @@ class User {
                 WHERE user_name = $1;`, [username]);
 
                 if (result.rows.length != 1) {
-                    throw {code : 404, message : "Unable to locate user"};
+                    throw {code : 404, message : `Unable to locate user ${username}`};
                 }
 
                 const user = new User(result.rows[0]);
@@ -122,7 +144,7 @@ class User {
         })
     }
 
-    static deleteUserByUsername (username) {
+    static async deleteUserByUsername (username) {
         return new Promise ( async (resolve, reject) => {
             try {
                 const result = await db.query(`DELETE

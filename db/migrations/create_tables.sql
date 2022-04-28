@@ -9,7 +9,7 @@ CREATE TABLE plants(
     plant_name varchar(255) NOT NULL,
     nickname varchar(255) NOT NULL,
     frequency INT NOT NULL,
-    count INT not NULL,
+    count INT default 0,
     updatedon timestamp default CURRENT_TIMESTAMP not null
 );
 
@@ -38,6 +38,7 @@ CREATE TYPE user_role_type AS ENUM ('admin', 'user');
 
 CREATE TABLE IF NOT EXISTS user_account (
     userid SERIAL PRIMARY KEY,
+    name varchar(50),
     user_name citext NOT NULL
       CONSTRAINT duplicate_username UNIQUE
       CONSTRAINT username_length CHECK (LENGTH(user_name) BETWEEN 3 AND 30),

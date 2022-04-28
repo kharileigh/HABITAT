@@ -1,22 +1,46 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-function verifyToken(req, res, next){
+const User = require("../models/users");
+const e = require("express");
 
-    const header = req.headers['authorization'];
-
-    if (header) {
-        const token = header.split(' ')[1];
-        jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
-            console.log(data);
-            if(err){
-                res.status(403).json({ success : false,  message: 'Invalid token' })
-            } else {
-                next();
-            }
-        })
+// verifies the token?
+const requireAuth = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+      jwt.verify(token, 'secret', (err, decodedToken) => {
+        if (err) {
+          res.redirect('login');
+          err.message;
+        } /*else {
+          console.log(decodedToken);
+        }*/
+      })
     } else {
-        res.status(403).json({ success: false, message: 'Missing token' })
+      res.redirect('/login');
     }
-}
+    next()
+  }
 
-module.exports = verifyToken;
+// searches if the cookies user exists?
+const authentication = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+      jwt.verify(token, 'secret', async (err, decodedToken) => {
+        if (err) {
+          console.log(err)
+          res.locals.user = null;
+          next();
+        } else {
+          console.log(decodedToken)
+          res.locals.user = await User.getUserByUsername(decodedToken.id);
+          next();
+        }
+      });
+    } else {
+      res.locals.user = null;
+      next();
+    }
+  };
+
+module.exports = { authentication, requireAuth }

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const plantsController = require('../controllers/plants')
+const plantsController = require('../controllers/plants');
 
 router.route('/')
     .get(plantsController.index)
