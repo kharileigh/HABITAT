@@ -89,10 +89,11 @@ class User {
         return new Promise(async (resolve, reject) => {
             try {
                 console.log(email);
-                const user = await db.query(`SELECT user_password FROM user_account
-                                            WHERE user_email = $1;`, [ email ])
-                console.log('saijdasddsa : ' + JSON.parse(user))
-                resolve(user);
+                const password = await db.query(`SELECT user_password FROM user_account
+                                            WHERE user_email = $1;`, [ email ]);
+                console.log(password);
+                console.log('saijdasddsa : ' + JSON.parse(password))
+                resolve(JSON.parse(password));
             } catch (err) {
                 reject(`User with email: ${email} not found`);
             }
