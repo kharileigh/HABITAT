@@ -39,7 +39,7 @@ async function getAll() {
   async function loadPlantIndex(id) {
     document.getElementById("main").style.display="none";
       const data = await getItem(id);
-      renderPlant(data);
+      renderPlant(data, id);
   }
 
   function renderCard(data) {
@@ -62,7 +62,8 @@ async function getAll() {
 
 
 
-function renderPlant(data) {
+function renderPlant(data, id) {
+  
 // let freq;
 //   function convertFrequency(data) {
 //     if (data.frequency == 365) {
@@ -85,15 +86,45 @@ function renderPlant(data) {
     // const frequency = document.createElement("p");
     // frequency.textcontent = `${data.nickname} needs ${freq} watering!`;
     const streak = document.createElement("h3");
-   // const count = 
-    streak.textcontent = "Your current streak is ";
+    streak.textContent = `Your current streak is ${data.count}`;
       const wateringBtn = document.createElement("button");
+      wateringBtn.id = "water";
       wateringBtn.textContent = "Water Me!";
          card2.appendChild(plantNickname);
          card2.appendChild(plantName);
         // card.appendChild(frequency);
          card2.appendChild(streak);
          card2.appendChild(wateringBtn);
+
+
+          
+         wateringBtn.addEventListener('click', async (e) => {
+           console.log("this is really difficult", id)
+               try{
+                   const updateCountElements = {
+                       count: data.count += 1,
+                       plantid: id
+                   }
+                   const options = {
+                       method: "PUT",
+                       body: JSON.stringify(updateCountElements),
+                       headers: {"Content-Type": "application/json"}
+                   }
+                   const response = await fetch(`http://localhost:3000/plants/${id}`, options);
+                   const result = await response.json();
+                 
+                       window.location.hash = `#plants/${id}`
+                   
+               } catch (err) {
+                   console.warn(err);
+               }
+           })
+            
+       
+        
   }
   
+
   loadIndexFor();
+
+
