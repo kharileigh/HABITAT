@@ -85,8 +85,7 @@ function renderPlant(data) {
     // const frequency = document.createElement("p");
     // frequency.textcontent = `${data.nickname} needs ${freq} watering!`;
     const streak = document.createElement("h3");
-   // const count = 
-    streak.textcontent = "Your current streak is ";
+    streak.textContent = `Your current streak is ${data.count}`;
       const wateringBtn = document.createElement("button");
       wateringBtn.textContent = "Water Me!";
          card2.appendChild(plantNickname);
