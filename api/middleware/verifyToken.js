@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/users");
 const e = require("express");
 
+// verifies the token?
 function verifyToken(req, res, next){
 
     const header = req.headers['authorization'];
@@ -23,8 +24,7 @@ function verifyToken(req, res, next){
     }
 }
 
-
-
+// searches if the cookies user exists?
 async function authentication (req, res) {
     try {
         console.log(req.method, req.originalUrl);

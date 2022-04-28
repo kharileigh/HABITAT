@@ -24,19 +24,7 @@ async function show (req, res) {
         res.status(err.code).json({ success : false, message : err.message })
     }
 }
-// post
-async function login(req, res) {
-    const { email, password } = req.body;
-    try {
-        const user = await User.login(email, password);
-        const token = createToken(user.username);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days
-        res.status(200).json({ user: user.username })
-    } catch (err) {
-        const errors = handleErrors(err);
-        res.status(422).json({ errors });
-    }
-}
+
 // post
 async function register (req, res) {
     try {
@@ -53,13 +41,29 @@ async function register (req, res) {
         res.status(err.code).json({ success : false, message : err.message })
     }
 }
+
+// post
+async function login(req, res) {
+    const { email, password } = req.body;
+    try {
+        const user = await User.login(email, password);
+        const token = createToken(user.username);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days
+        res.status(200).json({ user: user.username })
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(422).json({ errors });
+    }
+}
+
 //logout get
-async function getLogout(req, res) {
+async function logout(req, res) {
     //replacing jwt with empty cookie with 1 millisecond expiration
     res.cookie('jwt', '', { maxAge: 1 });
     res.redirect('/');
 }
 
+//delete
 async function deleteUser (req, res) {
     try {
         const token = header["authorization"].split(" ")[1];
@@ -89,4 +93,4 @@ async function deleteUser (req, res) {
 
 
 
-module.exports = { index, show, register, deleteUser };
+module.exports = { index, show, register, login, logout, deleteUser };
