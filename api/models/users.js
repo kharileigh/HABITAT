@@ -1,5 +1,6 @@
 const db = require('../dbConfig/init');
-
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 /**
  * An app user
  */
@@ -57,20 +58,10 @@ class User {
     static async create(data) {
         return new Promise( async (resolve, reject) => {
             try {
-                const result = await db.query(`INSERT INTO user_account (
-                                                name,
-                                                user_name,
-                                                user_password,
-                                                user_email,
-                                                user_role
-                                            ) VALUES (
-                                                $1, $2, $3, $4, $5
-                                            ) RETURNING *;`,
-                                              [data.name,
-                                               data.username,
-                                               data.password,
-                                               data.email,
-                                               data.role]);
+                const { firstname, user_name, user_password, user_email } = data;
+                console.log(data);
+                const result = await db.query(`INSERT INTO user_account (name, user_name, user_password, user_email) VALUES ($1, $2, $3, $4) RETURNING *;`, [firstname, user_name, user_password, user_email]);
+
                 const user = new User(result.rows[0]);
                 resolve(user);
             } catch (err) {
@@ -96,7 +87,7 @@ class User {
     static async findByEmail(email) {
         return new Promise(async (resolve, reject) => {
             try {
-                const user = await db.query(`SELECT user_email FROM user_account
+                const user = await db.query(`SELECT user_account FROM user_account
                                             WHERE user_email = $1`, [ email ])
                 resolve(user);
             } catch (err) {
@@ -108,6 +99,7 @@ class User {
     static async login (email, password) {
         const user = await this.findByEmail(email);
         if (user) {
+            
             const auth = await bcrypt.compare(password, user.password)
             if (auth) {
                 return user;

@@ -3,6 +3,13 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/users");
 const verifyToken = require("../middleware/verifyToken");
 
+
+const jwtMaxAge = 3 * 24 * 60 * 60; //3 days
+//jwt
+const createToken = (id) => {
+    return jwt.sign({ id }, 'secret')
+};
+
 async function index (req, res) {
     try {
         const result = await User.getAll()
@@ -26,19 +33,20 @@ async function show (req, res) {
 }
 
 // post
-async function register (req, res) {
+async function register(req, res) {
+    const { firstname, username, password, email } = req.body;
     try {
-        // username & password are absolutely required
-        if (!req.body.username || !req.body.password) {
-            throw { code: 400, message: "Insufficient information provided to create account"}
-        }
-
-        const hashed = await bcrypt.hash(req.body.password,
-                                         parseInt(process.env.BCRYPT_SALT_ROUNDS));
-        const user = await User.create({ ...req.body, password: hashed, role: "user" });
-        res.status(201).json({ success : true, user : user.details });
-    } catch (err) {
-        res.status(err.code).json({ success : false, message : err.message })
+        console.log(req.body)
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);  
+        await User.create({ firstname, username, hashedPassword, email })
+        const token = createToken(username);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days
+        res.status(201).json({ user: username });
+    }
+    catch (err) {
+        res.status(422).json({ err });
+        console.log(err)
     }
 }
 
@@ -46,13 +54,14 @@ async function register (req, res) {
 async function login(req, res) {
     const { email, password } = req.body;
     try {
-        const user = await User.login(email, password);
+        console.log(req.body); 
+        const user = await User.login(email, password); 
         const token = createToken(user.username);
         res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days
         res.status(200).json({ user: user.username })
     } catch (err) {
-        const errors = handleErrors(err);
-        res.status(422).json({ errors });
+        console.log(err)
+        res.status(422).json({ err });
     }
 }
 

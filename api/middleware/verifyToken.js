@@ -5,47 +5,42 @@ const User = require("../models/users");
 const e = require("express");
 
 // verifies the token?
-function verifyToken(req, res, next){
-
-    const header = req.headers['authorization'];
-
-    if (header) {
-        const token = header.split(' ')[1];
-        jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
-            console.log(data);
-            if(err){
-                res.status(403).json({ success : false,  message: 'Invalid token' })
-            } else {
-                next();
-            }
-        })
+const requireAuth = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+      jwt.verify(token, 'secret', (err, decodedToken) => {
+        if (err) {
+          res.redirect('login');
+          err.message;
+        } /*else {
+          console.log(decodedToken);
+        }*/
+      })
     } else {
-        res.status(403).json({ success: false, message: 'Missing token' })
+      res.redirect('/login');
     }
-}
+    next()
+  }
 
 // searches if the cookies user exists?
-async function authentication (req, res) {
-    try {
-        console.log(req.method, req.originalUrl);
-        const user = await User.getUserByUsername(req.body.username);
-        
-        const authenticated = await bcrypt.compare(req.body.password, user.password);
-
-        if (authenticated) {
-            const token = await jwt.sign(user.details,
-                                         process.env.JWT_SECRET,
-                                         { expiresIn: 60 * 60 });
-            res.status(200).send({ success : true, token : "Bearer " + token});
+const authentication = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+      jwt.verify(token, 'secret', async (err, decodedToken) => {
+        if (err) {
+          console.log(err)
+          res.locals.user = null;
+          next();
         } else {
-            throw { code : 403, message : "Unable to authenticate" };
+          console.log(decodedToken)
+          res.locals.user = await User.getUserByUsername(decodedToken.id);
+          next();
         }
-    } catch (err) {
-        if (!err.hasOwnProperty("code")) {
-            err = {code : 500, message : err.message }
-        }
-        res.status(err.code).json({ success : false, message : err.message })
+      });
+    } else {
+      res.locals.user = null;
+      next();
     }
-}
+  };
 
-module.exports = {authentication, verifyToken}
+module.exports = { authentication, requireAuth }

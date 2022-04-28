@@ -39,10 +39,10 @@ CREATE TYPE user_role_type AS ENUM ('admin', 'user');
 CREATE TABLE IF NOT EXISTS user_account (
     userid SERIAL PRIMARY KEY,
     name varchar(50),
-    user_name citext NOT NULL
+    user_name citext 
       CONSTRAINT duplicate_username UNIQUE
       CONSTRAINT username_length CHECK (LENGTH(user_name) BETWEEN 3 AND 30),
-    user_password CHAR(60) NOT NULL,
+    user_password varchar(100),
     user_email email
       CONSTRAINT duplicate_email UNIQUE,
     user_role user_role_type DEFAULT 'user'
