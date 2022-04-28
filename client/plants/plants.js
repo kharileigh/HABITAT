@@ -1,85 +1,99 @@
-// //  ------ GET REQUEST TO GET PLANTS FROM DATABASE ----- //
-// async function getAll(plants) {
-//   try {
-//     const response = await fetch ("http://localhost:3000/plants");
-//     const data = await response.json()
-//     // --- guard condition | check if there is data in existence before returning any information --- //
-//     if(data.length === 0) {
-//       window.location.href = "createPlant.html"
-//     } else {
-//       return data;
-//     } 
-//   } catch (err) {
-//     console.warn(err);
-//   }
-// }
-
-// // ----- DOM MANIPULATION TO ADD USER'S PLANTS TO plants.html ----------- //
-
-// const plantCard = document.querySelector("plantInfo");
-// const plantNickname = document.querySelector("nickname");
-// const plantName = document.querySelector("plantName");
-
-// // ---- calling the renderPlantModal function to display plant info ---- //
-// async function loadPlantModal(plants, plantid) {
-//   plantCardContent.innerHTML = "";
-//   const data = await getItem(plants, plantid);
-//   renderPlantModal(data);
-// }
-
-// // ---- adds information to html page ---- //
-// function renderPlantModal(plant) {
-//   plantNickname.textContent = `${plant.nickname}`;
-//   plantName.textContent =`${plant.plant_name}`;
-//   const wateringBtn = document.createElement("button");
-//   wateringBtn.textContent = "Water Me!"; 
-//   wateringBtn.onclick = () => {
-//     window.location.href = "events.html"
-//   };
-// plantCardContent.appendChild(wateringBtn);
-// }
-
-
-
-
-
-
-
-function fetchData() {
-  fetch("http://localhost:3000/plants")
-    .then((response) => {
-      console.log(response);
-      if (!response.ok) {
-        throw Error("ERROR");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // --- guard condition | check this for immediately fails first --- //
-      console.log(data);
+// // //  ------ GET REQUEST TO GET PLANTS FROM DATABASE ----- //
+async function getAll() {
+    try {
+      const response = await fetch("http://localhost:3000/plants");
+      const data = await response.json();
+      // --- guard condition | check if there is data in existence before returning any information --- //
       if (data.length === 0) {
-        // window.location.href = "createPlant.html"
+        window.location.href = "createPlant.html";
+      } else {
+        console.log(data);
+        return data;
       }
-
-      // ---- map gives back an array of Plant with its details as on object ---- //
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+  
+  
+  async function getItem(id) {
+    try {
+      const response = await fetch(`http://localhost:3000/plants/${id}`);
+      const data = await response.json();
       console.log(data);
-      const html = data
-        .map((plant) => {
-          return `
-                  <p> ${plant.nickname} </p>
-                `;
-        })
-        .join("");
+      return data;
+    } catch (err) {
+      console.warn(err);
+    }
+  }
 
-      document
-        .querySelector("#plantInfo")
-        .insertAdjacentHTML("afterbegin", html);
-    })
-    // ----- REDIRECT USER HERE TO CREATE PLANT PAGE???
-    .catch((error) => {
-      console.log(error);
-      window.location.href = "createPlant.html";
-    });
-}
+  // // ----- DOM MANIPULATION TO ADD USER'S PLANTS TO plants.html ----------- //
+  const main = document.querySelector('main');
+  const section = document.querySelector('section');
 
-fetchData();
+  async function loadIndexFor() {
+    const data = await getAll();
+    data.forEach((a) => renderCard(a, data));
+  }
+
+  async function loadPlantIndex(id) {
+    document.getElementById("main").style.display="none";
+      const data = await getItem(id);
+      renderPlant(data);
+  }
+
+  function renderCard(data) {
+    let id = data.plantid;
+    let card1 = document.createElement("div");
+    card1.setAttribute("id", "card1");
+    card1.className = "card";
+    card1.textContent = data.name;
+    main.appendChild(card1);
+    let button = document.createElement("button")
+    button.onclick = () =>  loadPlantIndex(id);
+    card1.appendChild(button);
+    const plantNickname = document.createElement("h2");
+    plantNickname.textContent = data.nickname;
+    const plantName = document.createElement("h3");
+    plantName.textContent = data.plant_name;
+    button.appendChild(plantNickname);
+    button.appendChild(plantName);
+  }
+
+
+
+function renderPlant(data) {
+// let freq;
+//   function convertFrequency(data) {
+//     if (data.frequency == 365) {
+//        return freq = "daily";
+//     } else if (data.frequency == 52) {
+//         return freq = "weekly";
+//     } else {
+//         return freq = "monthly";
+//     }
+// }
+    
+    let card2 = document.createElement("div");
+    card2.className = "card";
+    popup.appendChild(card2);
+    const plantNickname = document.createElement("h2");
+    plantNickname.textContent = data.nickname;
+    const plantName = document.createElement("h3");
+    plantName.textContent = data.plant_name;
+    // convertFrequency();
+    // const frequency = document.createElement("p");
+    // frequency.textcontent = `${data.nickname} needs ${freq} watering!`;
+    const streak = document.createElement("h3");
+   // const count = 
+    streak.textcontent = "Your current streak is ";
+      const wateringBtn = document.createElement("button");
+      wateringBtn.textContent = "Water Me!";
+         card2.appendChild(plantNickname);
+         card2.appendChild(plantName);
+        // card.appendChild(frequency);
+         card2.appendChild(streak);
+         card2.appendChild(wateringBtn);
+  }
+  
+  loadIndexFor();
