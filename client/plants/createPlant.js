@@ -1,15 +1,17 @@
 // ------- POST REQUEST TO CREATE NEW PLANT ------ ///
 
 const form = document.getElementById("createPlantForm");
-const plantType = document.getElementById("plantType");
-const nickname = document.getElementById("nickname");
-const frequency = document.getElementById("frequency");
+// BROKE
+// const plantType = document.getElementById("plantType");
+// const nickname = document.getElementById("nickname");
+// const frequency = document.getElementById("frequency");
    
 
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const plantType = event.target.plantType.value;
+    const plantType = event.target.pT.value;
+    const nickname = event.target.nickname.value;
     const nickname = event.target.nickname.value;
     const frequency = parseInt(document.querySelector('input[name="options"]:checked').value);
     console.log(frequency);

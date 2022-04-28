@@ -3,17 +3,19 @@
 // ------ register.html ------ //
 
 const form = document.getElementById("userRegisterForm");
-const firstnameInput = document.getElementById("firstname");
-const usernameInput = document.getElementById("usr");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("pwd");
+// BROKE
+// const firstnameInput = document.getElementById("firstname");
+// const usernameInput = document.getElementById("usr");
+// const emailInput = document.getElementById("email");
+// const passwordInput = document.getElementById("pwd");
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const firstname = event.target.firstnameInput.value;
-    const username = event.target.usernameInput.value;
-    const email = event.target.emailInput.value;
-    const password = event.target.passwordInput.value;
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    const firstname = e.target.firstname.value;
+    const username = e.target.usr.value;
+    const email = e.target.email.value;
+    const password = e.target.pwd.value;
+    console.log(firstname, username, email, password);
 
     userRegister(firstname, username, email, password);
     form.reset();
@@ -22,7 +24,6 @@ form.addEventListener("submit", (event) => {
 });
 
 async function userRegister(firstname, username, email, password) {
-    e.preventDefault();
     try{
         const userRegisterElements = {
             firstname: firstname,
@@ -35,7 +36,7 @@ async function userRegister(firstname, username, email, password) {
             body: JSON.stringify(userRegisterElements),
             headers: {"Content-Type": "application/json"}
         }
-        const response = await fetch("http://localhost:3000/users", options);
+        const response = await fetch("http://localhost:3000/users/register", options);
         const { id, err } = await response.json();
         if(err) {
             throw Error(err)

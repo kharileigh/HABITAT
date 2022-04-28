@@ -14,12 +14,12 @@ const eventsRoutes = require('./routes/events');
 const { authentication, verifyToken } = require('./middleware/verifyToken');
 const logRoutes = require("./middleware/log-routes");
 // express middleware - for all routes do THIS function
-server.get('*', authentication)
+// server.get('*', authentication)
 server.use(logRoutes);
 
 // routes
 server.use('/users', usersRoutes)
-server.use('/plants', verifyToken, plantsRoutes);
+server.use('/plants', plantsRoutes);
 server.use('/events', verifyToken, eventsRoutes);
 
 server.get('/', (req, res) => res.send('Welcome to Habitat'));
