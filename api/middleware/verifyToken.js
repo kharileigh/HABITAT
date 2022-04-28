@@ -1,4 +1,8 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+const User = require("../models/users");
+const e = require("express");
 
 function verifyToken(req, res, next){
 
@@ -19,4 +23,29 @@ function verifyToken(req, res, next){
     }
 }
 
-module.exports = verifyToken;
+
+
+async function authentication (req, res) {
+    try {
+        console.log(req.method, req.originalUrl);
+        const user = await User.getUserByUsername(req.body.username);
+        
+        const authenticated = await bcrypt.compare(req.body.password, user.password);
+
+        if (authenticated) {
+            const token = await jwt.sign(user.details,
+                                         process.env.JWT_SECRET,
+                                         { expiresIn: 60 * 60 });
+            res.status(200).send({ success : true, token : "Bearer " + token});
+        } else {
+            throw { code : 403, message : "Unable to authenticate" };
+        }
+    } catch (err) {
+        if (!err.hasOwnProperty("code")) {
+            err = {code : 500, message : err.message }
+        }
+        res.status(err.code).json({ success : false, message : err.message })
+    }
+}
+
+module.exports = {authentication, verifyToken}

@@ -54,7 +54,7 @@ class User {
      * @param {object} data An object describing a user
      * @returns {Promise} A promise that resolves to a User object
      */
-    static create(data) {
+    static async create(data) {
         return new Promise( async (resolve, reject) => {
             try {
                 const result = await db.query(`INSERT INTO user_account (
@@ -93,13 +93,37 @@ class User {
         })
     }
 
+    static async findByEmail(email) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const user = await db.query(`SELECT user_email FROM user_account
+                                            WHERE user_email = $1`, [ email ])
+                resolve(user);
+            } catch (err) {
+                reject(`User with email: ${email} not found`);
+            }
+        });
+    }
+
+    static async login (email, password) {
+        const user = await this.findByEmail(email);
+        if (user) {
+            const auth = await bcrypt.compare(password, user.password)
+            if (auth) {
+                return user;
+            }
+            throw Error('Invalid password');
+        }
+        throw Error('Incorrect email');
+    }
+
     /**
      * Returns a user object matching a given username
      * 
      * @param {string} username the username to search for
      * @returns {object} A user object
      */
-    static getUserByUsername (username) {
+    static async getUserByUsername (username) {
         return new Promise ( async (resolve, reject) => {
             try {
                 const result = await db.query(`SELECT *
@@ -107,7 +131,7 @@ class User {
                 WHERE user_name = $1;`, [username]);
 
                 if (result.rows.length != 1) {
-                    throw {code : 404, message : "Unable to locate user"};
+                    throw {code : 404, message : `Unable to locate user ${username}`};
                 }
 
                 const user = new User(result.rows[0]);
@@ -125,7 +149,7 @@ class User {
         })
     }
 
-    static deleteUserByUsername (username) {
+    static async deleteUserByUsername (username) {
         return new Promise ( async (resolve, reject) => {
             try {
                 const result = await db.query(`DELETE

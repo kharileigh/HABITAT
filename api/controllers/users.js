@@ -24,8 +24,21 @@ async function show (req, res) {
         res.status(err.code).json({ success : false, message : err.message })
     }
 }
-
-async function create (req, res) {
+// post
+async function login(req, res) {
+    const { email, password } = req.body;
+    try {
+        const user = await User.login(email, password);
+        const token = createToken(user.username);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days
+        res.status(200).json({ user: user.username })
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(422).json({ errors });
+    }
+}
+// post
+async function register (req, res) {
     try {
         // username & password are absolutely required
         if (!req.body.username || !req.body.password) {
@@ -40,8 +53,14 @@ async function create (req, res) {
         res.status(err.code).json({ success : false, message : err.message })
     }
 }
+//logout get
+async function getLogout(req, res) {
+    //replacing jwt with empty cookie with 1 millisecond expiration
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('/');
+}
 
-async function destroy (req, res) {
+async function deleteUser (req, res) {
     try {
         const token = header["authorization"].split(" ")[1];
         const payload = jwt.decode(token);
@@ -70,4 +89,4 @@ async function destroy (req, res) {
 
 
 
-module.exports = { index, show, create, destroy };
+module.exports = { index, show, register, deleteUser };
