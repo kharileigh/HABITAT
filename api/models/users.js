@@ -1,5 +1,6 @@
 const db = require('../dbConfig/init');
-
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 /**
  * An app user
  */
@@ -57,20 +58,9 @@ class User {
     static async create(data) {
         return new Promise( async (resolve, reject) => {
             try {
-                const result = await db.query(`INSERT INTO user_account (
-                                                name,
-                                                user_name,
-                                                user_password,
-                                                user_email,
-                                                user_role
-                                            ) VALUES (
-                                                $1, $2, $3, $4, $5
-                                            ) RETURNING *;`,
-                                              [data.name,
-                                               data.username,
-                                               data.password,
-                                               data.email,
-                                               data.role]);
+                const { firstname, username, hashedPassword, email } = data;
+                const result = await db.query(`INSERT INTO user_account (name, user_name, user_password, user_email) VALUES ($1, $2, $3, $4) RETURNING *;`, [firstname, username, hashedPassword, email]);
+
                 const user = new User(result.rows[0]);
                 resolve(user);
             } catch (err) {
@@ -96,25 +86,30 @@ class User {
     static async findByEmail(email) {
         return new Promise(async (resolve, reject) => {
             try {
-                const user = await db.query(`SELECT user_email FROM user_account
-                                            WHERE user_email = $1`, [ email ])
-                resolve(user);
+                console.log(email);
+                const password = await db.query(`SELECT user_password
+                                                FROM user_account 
+                                                WHERE user_email = $1;`, [ email ]);
+                resolve(password.rows[0]);
             } catch (err) {
+                console.log(err)
                 reject(`User with email: ${email} not found`);
             }
         });
     }
 
     static async login (email, password) {
-        const user = await this.findByEmail(email);
-        if (user) {
-            const auth = await bcrypt.compare(password, user.password)
+        console.log(password + " LOOK AT ME IM NORMAL PASSWORD")
+        const dbPass = await this.findByEmail(email);
+        const resultPass = JSON.stringify(dbPass.user_password)
+        if (resultPass) {
+            const auth = await bcrypt.compareSync(password, resultPass)
             if (auth) {
-                return user;
+                return resultPass;
             }
-            throw Error('Invalid password');
+            throw Error('Wrong password');
         }
-        throw Error('Incorrect email');
+        throw Error('Wrong email');
     }
 
     /**

@@ -30,7 +30,7 @@ async function create (req, res) {
 async function update (req, res) {
     try {
         const updatePlant = await Plant.update(req.body);
-        res.status(204).json(updatePlant);
+        res.status(204).json({success: true});
     } catch (err) {
         res.status(404).json({err});
     };

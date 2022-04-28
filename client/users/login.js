@@ -1,16 +1,16 @@
 // --------- LOGIN FUNCTIONALITY | login.html --------- //
 
 const form = document.getElementById("userLoginForm");
-const emailInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
+// const emailInput = document.getElementById("username");
+// const passwordInput = document.getElementById("password");
 
 
-console.log(form);
 
-form.addEventListener("submit", (event) => {
+
+form.addEventListener("submit", e => {
   e.preventDefault();
-  const email = event.target.emailInput.value;
-  const password = event.target.passwordInput.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
   console.log(email, password)
   userLogin(email, password);
   form.reset();
@@ -19,7 +19,6 @@ form.addEventListener("submit", (event) => {
 });
 
 async function userLogin(email, password) {
-  e.preventDefault();
   try {
     const userLoginElements = {
       email: email,
