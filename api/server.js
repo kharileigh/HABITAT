@@ -19,7 +19,7 @@ server.use(logRoutes);
 
 // routes
 server.use('/users', usersRoutes)
-server.use('/plants', plantsRoutes);
+server.use('/plants', verifyToken, plantsRoutes);
 server.use('/events', verifyToken, eventsRoutes);
 
 server.get('/', (req, res) => res.send('Welcome to Habitat'));
