@@ -14,7 +14,7 @@ async function index (req, res) {
     try {
         const result = await User.getAll()
         const users = result.map(u => u.details);
-        res.status(200).json({ success : true, users : users });
+        res.status(200).json(result)    //({ success : true, users : users });
     } catch (err) {
         res.status(500).json({ success : false, message : err.message });
     }
@@ -55,9 +55,11 @@ async function login(req, res) {
     const { email, password } = req.body;
     try {
         console.log(req.body); 
-        const user = await User.login(email, password); 
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);  
+        const user = await User.login(email, hashedPassword); 
         const token = createToken(user.username);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days
+        res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 whole days
         res.status(200).json({ user: user.username })
     } catch (err) {
         console.log(err)
