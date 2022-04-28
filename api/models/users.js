@@ -88,8 +88,10 @@ class User {
     static async findByEmail(email) {
         return new Promise(async (resolve, reject) => {
             try {
-                const user = await db.query(`SELECT * FROM user_account
-                                            WHERE user_email = $1`, [ email ])
+                console.log(email);
+                const user = await db.query(`SELECT user_password FROM user_account
+                                            WHERE user_email = $1;`, [ email ])
+                console.log('saijdasddsa : ' + JSON.parse(user))
                 resolve(user);
             } catch (err) {
                 reject(`User with email: ${email} not found`);
@@ -98,11 +100,10 @@ class User {
     }
 
     static async login (email, password) {
-        console.log(email, password)
         const user = await this.findByEmail(email);
         console.log(user);
         if (user) {
-            const findPassword = await db.query(`SELECT user_password FROM user_account`)
+            // const findPassword = await db.query(`SELECT user_password FROM user_account`)
             const auth = await bcrypt.compare(password, user.password)
             if (auth) {
                 return user;
