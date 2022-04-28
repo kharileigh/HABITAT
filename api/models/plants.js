@@ -55,16 +55,17 @@ module.exports = class Plant {
     static update(plant) {
         return new Promise (async (resolve, reject) => {
             try {
-                const { plant_name, nickname, frequency, count, plantid } = plant;
+                const { count, plantid } = plant;
+                
                 let updatedPlantData = await db.query(`UPDATE plants 
-                                                       SET plant_name = $1,
-                                                       nickname = $2,
-                                                       frequency = $3,
-                                                       count = $4
-                                                       WHERE plantid = $5;`, [ plant_name, nickname, frequency, count, plantid ]);
+                                                       SET 
+                                                       count = $1
+                                                       WHERE plantid = $2
+                                                       RETURNING *;`, [ count , plantid]);
                 let updatedPlant = new Plant(updatedPlantData.rows[0]);
                 resolve (updatedPlant);
             } catch (err) {
+                console.log(err);
                 reject('Error updating Plant');
             }
         });
