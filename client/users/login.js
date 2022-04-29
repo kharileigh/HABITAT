@@ -15,7 +15,7 @@ form.addEventListener("submit", e => {
   userLogin(email, password);
   form.reset(); 
   redirectHome();
-  window.location.pathname = "client/plants/plants.html";
+  
  
  
  
@@ -46,5 +46,5 @@ async function userLogin(email, password) {
 }
 
 function redirectHome() {
-  window.location.pathname = "client/plants/plants.html";
+  window.location.href = "plants.html";
 }
