@@ -14,13 +14,13 @@ VALUES
 ),
 (
     'Aloe Vera',
-    'Bruh',
+    'Sara',
     4,
     2
 ),
 (
     'Philodendron Green',
-    'Oof',
+    'Phor',
     5,
     2
 );
