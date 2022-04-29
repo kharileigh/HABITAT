@@ -59,8 +59,6 @@ class User {
         return new Promise( async (resolve, reject) => {
             try {
                 const { firstname, username, hashedPassword, email } = data;
-                console.log(data);
-                console.log(username);
                 const result = await db.query(`INSERT INTO user_account (name, user_name, user_password, user_email) VALUES ($1, $2, $3, $4) RETURNING *;`, [firstname, username, hashedPassword, email]);
 
                 const user = new User(result.rows[0]);
@@ -89,29 +87,26 @@ class User {
         return new Promise(async (resolve, reject) => {
             try {
                 console.log(email);
-                const password = await db.query(`SELECT user_password FROM user_account
-                                            WHERE user_email = $1;`, [ email ]);
-                console.log(password);
-                console.log('saijdasddsa : ' + JSON.parse(password))
-                resolve(JSON.parse(password));
+                const password = await db.query(`SELECT user_password
+                                                FROM user_account 
+                                                WHERE user_email = $1;`, [ email ]);
+                resolve(password.rows[0]);
             } catch (err) {
+                console.log(err)
                 reject(`User with email: ${email} not found`);
             }
         });
     }
 
     static async login (email, password) {
-        const user = await this.findByEmail(email);
-        console.log(user);
-        if (user) {
-            // const findPassword = await db.query(`SELECT user_password FROM user_account`)
-            const auth = await bcrypt.compare(password, user.password)
+        const dbPass = await this.findByEmail(email);
+        console.log(password, dbPass.user_password);
+        const auth = await bcrypt.compare(password, dbPass.user_password)
+        
             if (auth) {
-                return user;
+                return dbPass;
             }
             throw Error('Wrong password');
-        }
-        throw Error('Wrong email');
     }
 
     /**

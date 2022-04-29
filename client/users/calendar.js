@@ -57,7 +57,7 @@ function load() {
       // Adding in new feature here
 
       if (daySquare.id == "2022-3-18") {
-        daySquare.style.backgroundColor = "#e8faed";
+        daySquare.style.backgroundColor = "#97f3b1";
       }
     } else {
       daySquare.classList.add("padding");

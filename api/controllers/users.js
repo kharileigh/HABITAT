@@ -36,9 +36,9 @@ async function show (req, res) {
 async function register(req, res) {
     const { firstname, username, password, email } = req.body;
     try {
-        console.log(req.body)
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);  
+        console.log("Normal password is " + password + " Hashed password is " + hashedPassword);
         await User.create({ firstname, username, hashedPassword, email })
         const token = createToken(username);
         res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days
@@ -54,10 +54,10 @@ async function register(req, res) {
 async function login(req, res) {
     const { email, password } = req.body;
     try {
-        const salt = await bcrypt.genSalt();
-        const hashedPassword = await bcrypt.hash(password, salt); 
-        console.log('hashedPassword : ' + hashedPassword)
-        const user = await User.login(email, hashedPassword); 
+        // const salt = await bcrypt.genSalt(12);
+        // const hashedPassword = await bcrypt.hash(password, salt); 
+        // console.log('hashedPassword : ' + hashedPassword)
+        const user = await User.login(email, password); 
         const token = createToken(user.username);
         res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 whole days
         res.status(200).json({ user: user.username })
