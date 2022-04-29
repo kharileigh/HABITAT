@@ -13,20 +13,24 @@ describe("users controller", () => {
 
   describe("show", () => {
     test("it returns a user with a 200 status code", async () => {
-      jest
-        .spyOn(User, "findById")
-        .mockResolvedValue(
-          new User({
-            id: 1,
-            username: "Username 1",
-            password: "Password 1",
-            name: "Test User 1",
-          })
-        );
+      jest.spyOn(User, "findById").mockResolvedValue(
+        new User({
+          id: 1,
+          username: "Username 1",
+          password: "Password 1",
+          name: "Test User 1",
+        })
+      );
 
       const mockReq = { params: { id: 1 } };
       await usersController.show(mockReq, mockRes);
       expect(mockStatus).toHaveBeenCalledWith(200);
+      expect(mockJson).toHaveBeenCalledWith({
+        id: 1,
+        username: "Username 1",
+        password: "Password 1",
+        name: "Test User 1",
+      });
     });
   });
 });

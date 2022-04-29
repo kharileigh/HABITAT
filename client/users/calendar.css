@@ -1,8 +1,22 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url(../images/background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 body {
   display: flex;
   margin-top: 50px;
   justify-content: center;
   background-color: #fffcff;
+  font-family: "Kalam", cursive;
 }
 button {
   width: 75px;
@@ -19,12 +33,18 @@ button {
   padding: 10px;
   color: #d36c6c;
   font-size: 26px;
-  font-family: sans-serif;
   display: flex;
   justify-content: space-between;
 }
 #header button {
-  background-color: #92a1d1;
+  background: #131c12;
+  margin: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5x;
+  padding-bottom: 5px;
+  border-radius: 20px;
+  color: #fff !important; */
 }
 #container {
   width: 770px;
@@ -56,9 +76,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  opacity: 0.6;
 }
 .day:hover {
-  background-color: #e8faed;
+  background-color: #97f3b1;
 }
 
 .day + #currentDay {
@@ -71,8 +92,14 @@ button {
   box-shadow: none !important;
 }
 
-@media all (max-width: 500px) {
-  body {
-    margin-top: 30px;
-  }
+.btn2 {
+  background: #131c12;
+  margin: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5x;
+  padding-bottom: 5px;
+  border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #fff !important;
 }
