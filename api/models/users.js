@@ -99,17 +99,13 @@ class User {
     }
 
     static async login (email, password) {
-        console.log(password + " LOOK AT ME IM NORMAL PASSWORD")
         const dbPass = await this.findByEmail(email);
-        const resultPass = JSON.stringify(dbPass.user_password)
-        if (resultPass) {
-            const auth = await bcrypt.compareSync(password, resultPass)
+        console.log(password, dbPass);
+        const auth = await bcrypt.compare(password, dbPass.user_password)
             if (auth) {
-                return resultPass;
+                return dbPass;
             }
             throw Error('Wrong password');
-        }
-        throw Error('Wrong email');
     }
 
     /**
