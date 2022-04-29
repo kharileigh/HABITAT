@@ -1,99 +1,137 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Montserrat:wght@300&display=swap");
 
 html {
-    height: 100%;
-  }
-  
-  body {
-    min-height: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(../images/background.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .row h1 {
-    font-size: 4em;
-    font-family: 'Kalam', cursive;
-    color:#FFF;
-    text-align: center;
-  }
+  height: 100%;
+}
 
-  .row h2{
-    font-size: 1em;
-    font-family: 'Kalam', cursive;
-    color:#FFF;
-    text-align: center;
-   }
-   .row h3{
-    font-size: 2em;
-    font-family: 'Kalam', cursive;
-    color:#FFFFFF;
-    text-align: center;
-   }
-  
-  .btn { 
-    background: #FFFFFF;
-    margin: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px; 
-    font-family: 'Montserrat', sans-serif;
-  }
-  .btn2 {   
-    background: #131c12;
-    margin: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5x;
-    padding-bottom: 5px;
-    border-radius: 20px;
-    font-family: 'Montserrat', sans-serif;
-    color: #FFF !important;
-  }
-  
-  .btn3 {
-    background: #55814c;
-    margin: 10px;
-    border-radius: 20px;
-    font-family: 'Montserrat', sans-serif;
-    color: #FFF !important;
-  }
-  .btn4 {
-    background: #3C6E71;
-    margin: 10px;
-    border-radius: 20px;
-    font-family: 'Montserrat', sans-serif;
-    color: #FFF !important;
-  }
-  
-  .box {
-    padding: 100px;
-    vertical-align: center;
-    text-align: center;
-  }
-  .block {
-    display: block;
-    width: 100%;
-    border: none;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
-  .plant-box {
-    padding: 50px;
-    vertical-align: center;
-  }
-  
-  .plants {
-    background: #FFFFFF;
-    margin: 10px;
-    height: 60vh;
-    width: 60vw;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px; 
-    font-family: 'Montserrat Alternates', sans-serif;
-  }
+body {
+  min-height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url(../images/background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.row h1 {
+  font-size: 4em;
+  font-family: "Kalam", cursive;
+  color: #fff;
+  text-align: center;
+}
 
-  .plant-card {
-    background: #FFFFFF;
-  }
+.row h2 {
+  font-size: 1em;
+  font-family: "Kalam", cursive;
+  color: #fff;
+  text-align: center;
+}
+.row h3 {
+  font-size: 2em;
+  font-family: "Kalam", cursive;
+  color: #ffffff;
+  text-align: center;
+}
+
+.btn {
+  background: #ffffff;
+  margin: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+.btn2 {
+  background: #131c12;
+  margin: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5x;
+  padding-bottom: 5px;
+  border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #fff !important;
+}
+
+.btn3 {
+  background: #55814c;
+  margin: 10px;
+  border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #fff !important;
+}
+.btn4 {
+  background: #3c6e71;
+  margin: 10px;
+  border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #fff !important;
+}
+
+.box {
+  padding: 100px;
+  vertical-align: center;
+  text-align: center;
+}
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+.plant-box {
+  padding: 50px;
+  vertical-align: center;
+}
+
+.plants {
+  background: #ffffff;
+  margin: 10px;
+  height: 60vh;
+  width: 60vw;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+.plant-card {
+  background: #ffffff;
+}
+
+h1 {
+  font-size: 4em;
+  font-family: "Kalam", cursive;
+  color: #fff;
+  text-align: center;
+}
+
+.container {
+  padding: 80px;
+}
+
+main div {
+  margin: 10px;
+  opacity: 0.5;
+  border-radius: 10px;
+  color: black;
+}
+
+main button {
+  background-color: rgba(192, 176, 176, 0.5);
+  border-color: white;
+  color: black;
+}
+
+main h2 {
+  color: black;
+  opacity: 1;
+}
+
+section button {
+  background: #3c6e71;
+  margin: 10px;
+  border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #fff !important;
+}
