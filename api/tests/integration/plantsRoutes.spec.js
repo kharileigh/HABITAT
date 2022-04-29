@@ -28,7 +28,7 @@ describe('plants endpoints', () => {
         expect(res.statusCode).toEqual(422);
         expect(res.body).toHaveProperty('err');
 
-        const plantRes = await.request(api).get('/plants/4');
+        const plantRes = await request(api).get('/plants/4');
         expect(plantRes.statusCode).toEqual(404);
         
     }) 
