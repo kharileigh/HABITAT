@@ -12,9 +12,7 @@ form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const plantType = event.target.pT.value;
     const nickname = event.target.nickname.value;
-    const nickname = event.target.nickname.value;
     const frequency = parseInt(document.querySelector('input[name="options"]:checked').value);
-    console.log(frequency);
 
 
     await createPlant(plantType, nickname, frequency);

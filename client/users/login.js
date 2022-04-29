@@ -46,5 +46,5 @@ async function userLogin(email, password) {
 }
 
 function redirectHome() {
-  window.location.href = "plants.html";
+  window.location.href = "createPlant.html";
 }
