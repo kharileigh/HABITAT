@@ -13,9 +13,12 @@ form.addEventListener("submit", e => {
   const password = e.target.password.value;
   console.log(email, password)
   userLogin(email, password);
-  form.reset();
-  // redirectHome();
-  // window.location.href = "plants.html";
+  form.reset(); 
+  redirectHome();
+ 
+ 
+ 
+  
 });
 
 async function userLogin(email, password) {
@@ -41,6 +44,6 @@ async function userLogin(email, password) {
   }
 }
 
-// function redirectHome() {
-//   window.location.href = "plants.html";
-// }
+function redirectHome() {
+  window.location.href = "plants.html";
+}

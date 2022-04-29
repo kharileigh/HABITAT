@@ -100,8 +100,9 @@ class User {
 
     static async login (email, password) {
         const dbPass = await this.findByEmail(email);
-        console.log(password, dbPass);
+        console.log(password, dbPass.user_password);
         const auth = await bcrypt.compare(password, dbPass.user_password)
+        
             if (auth) {
                 return dbPass;
             }
