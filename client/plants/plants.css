@@ -134,4 +134,24 @@ section button {
   border-radius: 20px;
   font-family: "Montserrat", sans-serif;
   color: #fff !important;
+  font-family: "Kalam", cursive;
+}
+
+div.card {
+  margin: 10px;
+  background-color: rgba(192, 176, 176, 0.295);
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  font-family: "Kalam", cursive;
+}
+
+section div.card * {
+  display: flex;
+  justify-content: center;
+}
+
+section div.card h2 {
+  font-size: 60px;
 }
