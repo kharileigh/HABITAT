@@ -63,18 +63,7 @@ async function getAll() {
 
 
 function renderPlant(data, id) {
-  
-// let freq;
-//   function convertFrequency(data) {
-//     if (data.frequency == 365) {
-//        return freq = "daily";
-//     } else if (data.frequency == 52) {
-//         return freq = "weekly";
-//     } else {
-//         return freq = "monthly";
-//     }
-// }
-    
+
     let card2 = document.createElement("div");
     card2.className = "card";
     popup.appendChild(card2);
@@ -82,9 +71,6 @@ function renderPlant(data, id) {
     plantNickname.textContent = data.nickname;
     const plantName = document.createElement("h3");
     plantName.textContent = data.plant_name;
-    // convertFrequency();
-    // const frequency = document.createElement("p");
-    // frequency.textcontent = `${data.nickname} needs ${freq} watering!`;
     const streak = document.createElement("h3");
     streak.textContent = `Your current streak is ${data.count}`;
       const wateringBtn = document.createElement("button");
@@ -92,12 +78,8 @@ function renderPlant(data, id) {
       wateringBtn.textContent = "Water Me!";
          card2.appendChild(plantNickname);
          card2.appendChild(plantName);
-        // card.appendChild(frequency);
          card2.appendChild(streak);
          card2.appendChild(wateringBtn);
-
-
-          
          wateringBtn.addEventListener('click', async (e) => {
            console.log("this is really difficult", id)
                try{
