@@ -38,7 +38,7 @@ async function register(req, res) {
     try {
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);  
-        console.log(hashedPassword);
+        console.log("Normal password is " + password + " Hashed password is " + hashedPassword);
         await User.create({ firstname, username, hashedPassword, email })
         const token = createToken(username);
         res.cookie('jwt', token, { httpOnly: true, maxAge: jwtMaxAge * 1000 }) //3 days

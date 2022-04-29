@@ -1,6 +1,6 @@
 services:
   api:
-    container_name: TEST API
+    container_name: test_api
     environment: 
       - PGUSER=futureproof
       - PGHOST=db
@@ -12,7 +12,7 @@ services:
       - db
     tty: true
   db:
-    container_name: debug_test_db
+    container_name: test_db
     volumes:
       - "test_db:/var/lib/postgresql/data"
     environment: 
@@ -22,4 +22,4 @@ volumes:
   test_db:
 networks: 
   default:
-    name: debug_test
+    name: test

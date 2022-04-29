@@ -57,10 +57,11 @@ body {
 }
 
 .box {
-    padding: 150px;
+    padding: 100px;
     vertical-align: center;
     text-align: center;
 }
+
 .block {
     display: block;
     width: 100%;

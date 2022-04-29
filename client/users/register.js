@@ -19,7 +19,7 @@ form.addEventListener("submit", e => {
 
     userRegister(firstname, username, email, password);
     form.reset();
-    // redirectHome();
+    redirectHome();
     // window.location.href = "login.html";
 });
 
@@ -48,6 +48,6 @@ async function userRegister(firstname, username, email, password) {
     }
 }
 
-// function redirectHome() {
-//     window.location.href = "login.html";
-// }
+function redirectHome() {
+    window.location.href = "login.html";
+}
